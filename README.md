@@ -62,6 +62,3 @@ Thực hiện theo các bước sau để thiết lập và chạy Backend cục
 Mọi thắc mắc hoặc yêu cầu hỗ trợ về mã nguồn xin vui lòng liên hệ:
 * **GitHub:** [@nghiemdeptrai2006]
 * **Email:** [nguyentrongnghiem2006@gmail.com]
-* **Tác giả/Nhóm Nghiên cứu:** [Tên của bạn/Nhóm của bạn]
-* **GitHub:** [@nghiemdeptrai2006]
-* **Email:** [Email liên hệ của bạn]
