@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f2f7ff;
+}
+
+/* HEADER */
+.header {
+  background: #0a4fa3;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 55px;
+  margin-right: 12px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* BANNER */
+.banner {
+  background: linear-gradient(135deg, #0a4fa3, #1e90ff);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+/* SEARCH */
+.search-area {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.search-area input {
+  width: 50%;
+  padding: 12px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+}
+
+.search-area button {
+  padding: 12px 25px;
+  background: #0a4fa3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* DOCUMENT LIST */
+.document-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px;
+}
+
+.doc-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.doc-card:hover {
+  transform: translateY(-5px);
+}
+
+.doc-card h3 {
+  color: #0a4fa3;
+  margin-bottom: 10px;
+}
+
+.doc-card button {
+  margin-top: 15px;
+  background: #1e90ff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.footer {
+  background: #0a4fa3;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .search-area input {
+    width: 70%;
+  }
+}
