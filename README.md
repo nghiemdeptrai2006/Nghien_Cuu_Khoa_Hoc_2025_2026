@@ -1,4 +1,4 @@
-# 🚢 CNKH_2025: PHÁT TRIỂN BACKEND KHO DỮ LIỆU SỐ KĐTQT - UT-HCM
+# 🚢 CNKH_2025: PHÁT TRIỂN KHO DỮ LIỆU SỐ
 
 ## Giới Thiệu Dự Án
 
