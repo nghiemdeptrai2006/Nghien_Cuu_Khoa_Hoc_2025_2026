@@ -1,0 +1,35 @@
+<h2 id="thesisTitle"></h2>
+<p id="thesisInfo"></p>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  // Demo dữ liệu
+  const theses = {
+    101: {
+      title: "Xây dựng kho dữ liệu số cho Khoa ĐTQT",
+      author: "Nguyễn Văn A",
+      branch: "CNTT",
+      year: 2025
+    },
+    102: {
+        title: "Ứng dụng AI trong quản lý thư viện",
+        author: "Trần Thị B",
+        branch: "Kỹ thuật",
+        year: 2024
+    },
+    103: {
+        title: "Chuyển đổi số trong giáo dục đại học",
+        author: "Lê Văn C",
+        branch: "Kinh tế",
+        year: 2023
+    }
+  };
+
+  if (theses[id]) {
+    document.getElementById("thesisTitle").innerText = theses[id].title;
+    document.getElementById("thesisInfo").innerText =
+      "Sinh viên: " + theses[id].author + " | Ngành: " + theses[id].branch + " | Năm: " + theses[id].year;
+  }
+</script>
