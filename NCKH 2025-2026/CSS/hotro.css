@@ -5,18 +5,32 @@
   font-family: Arial, sans-serif;
 }
 
-body {
-  background: #f4f9ff;
+/* ================= VARIABLES ================= */
+:root {
+  --blue: #0a4fa3;
+  --blue-dark: #083b7a;
+  --blue-light: #1e90ff;
+  --bg-light: #f4f9ff;
 }
 
-/* HEADER */
+body {
+  background: var(--bg-light);
+}
+
+/* ================= HEADER ================= */
 .header {
-  background: #0a4fa3;
+  background: rgba(10, 79, 163, 0.95);
   color: white;
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  flex-wrap: wrap;
 }
 
 .header-left {
@@ -27,27 +41,59 @@ body {
 .logo {
   width: 55px;
   margin-right: 12px;
+  transition: transform 0.3s;
 }
 
+.logo:hover {
+  transform: scale(1.08);
+}
+
+/* MENU */
 .menu a {
   color: white;
   text-decoration: none;
   margin-left: 20px;
+  position: relative;
+  transition: 0.3s;
 }
 
-.menu a:hover {
-  text-decoration: underline;
+/* underline chạy */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background: #ffd43b;
+  transition: 0.3s;
 }
 
-/* BANNER */
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* ================= BANNER ================= */
 .banner {
-  background: linear-gradient(135deg, #0a4fa3, #1e90ff);
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
   color: white;
   text-align: center;
   padding: 55px 20px;
+  animation: fadeSlide 1.2s ease;
 }
 
-/* SUPPORT */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= SUPPORT ================= */
 .support-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -57,41 +103,69 @@ body {
 
 .faq h3,
 .contact h3 {
-  color: #0a4fa3;
+  color: var(--blue);
   margin-bottom: 15px;
 }
 
+/* FAQ */
 .faq-item {
   background: white;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 12px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.faq-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(10, 79, 163, 0.25);
 }
 
 .faq-item p {
   display: none;
   margin-top: 8px;
   color: #333;
+  animation: fadeIn 0.3s ease;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONTACT */
 .contact {
   background: white;
   padding: 20px;
   border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .contact button {
   margin-top: 15px;
-  background: #1e90ff;
+  background: var(--blue-light);
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* CHAT */
+.contact button:hover {
+  background: var(--blue-dark);
+  transform: scale(1.05);
+}
+
+/* ================= CHAT ================= */
 .chat-box {
   display: none;
   position: fixed;
@@ -99,22 +173,37 @@ body {
   bottom: 20px;
   width: 280px;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  animation: chatPop 0.4s ease;
+  z-index: 9999;
+}
+
+@keyframes chatPop {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .chat-header {
-  background: #0a4fa3;
+  background: var(--blue);
   color: white;
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  border-radius: 12px 12px 0 0;
 }
 
 .chat-body {
   padding: 10px;
   height: 150px;
   overflow-y: auto;
+  font-size: 14px;
 }
 
 .chat-box input {
@@ -122,19 +211,30 @@ body {
   padding: 8px;
   border: none;
   border-top: 1px solid #ccc;
+  outline: none;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 .footer {
-  background: #0a4fa3;
+  background: var(--blue);
   color: white;
   text-align: center;
   padding: 15px;
 }
 
-/* MOBILE */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
   .support-container {
     grid-template-columns: 1fr;
+  }
+
+  .menu {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .menu a {
+    margin: 10px;
   }
 }
