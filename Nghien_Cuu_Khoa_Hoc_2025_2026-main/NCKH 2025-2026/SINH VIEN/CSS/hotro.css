@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ================= VARIABLES ================= */
+:root {
+  --blue: #0a4fa3;
+  --blue-dark: #083b7a;
+  --blue-light: #1e90ff;
+  --bg-light: #f4f9ff;
+}
+
+body {
+  background: var(--bg-light);
+}
+
+/* ================= HEADER ================= */
+.header {
+  background: rgba(10, 79, 163, 0.95);
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  flex-wrap: wrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 55px;
+  margin-right: 12px;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+/* MENU */
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* underline chạy */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  background: #ffd43b;
+  transition: 0.3s;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* ================= BANNER ================= */
+.banner {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+  animation: fadeSlide 1.2s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= SUPPORT ================= */
+.support-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  padding: 40px;
+}
+
+.faq h3,
+.contact h3 {
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
+/* FAQ */
+.faq-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.faq-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(10, 79, 163, 0.25);
+}
+
+.faq-item p {
+  display: none;
+  margin-top: 8px;
+  color: #333;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CONTACT */
+.contact {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.contact button {
+  margin-top: 15px;
+  background: var(--blue-light);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact button:hover {
+  background: var(--blue-dark);
+  transform: scale(1.05);
+}
+
+/* ================= CHAT ================= */
+.chat-box {
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 90px;
+  width: 320px;
+  max-width: 90%;
+  background-color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  z-index: 1000;
+  animation: fadeIn 0.25s ease;
+}
+
+.chat-header {
+  background-color: #0b5ed7;
+  color: #ffffff;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.chat-header span {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.chat-body {
+  padding: 12px;
+  height: 240px;
+  overflow-y: auto;
+  background-color: #f7f9fc;
+  font-size: 14px;
+}
+
+.user-msg {
+  background-color: #0b5ed7;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px 12px 0 12px;
+  margin: 6px 0;
+  max-width: 80%;
+  margin-left: auto;
+}
+
+.bot-msg {
+  background-color: #e9ecef;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 12px 12px 12px 0;
+  margin: 6px 0;
+  max-width: 80%;
+}
+
+.chat-box input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-top: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  background: var(--blue-dark);
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .support-container {
+    grid-template-columns: 1fr;
+  }
+
+  .menu {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .menu a {
+    margin: 10px;
+  }
+}
