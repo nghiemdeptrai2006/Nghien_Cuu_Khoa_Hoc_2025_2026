@@ -38,7 +38,7 @@ body {
 }
 
 .menu a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* BANNER */
