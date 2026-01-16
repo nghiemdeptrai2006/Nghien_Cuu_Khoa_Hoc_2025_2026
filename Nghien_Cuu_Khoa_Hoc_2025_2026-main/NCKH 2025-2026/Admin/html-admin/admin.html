@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kho dữ liệu số | Khoa Đào tạo Quốc tế</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/NCKH 2025-2026/Admin/css-adim/admin.css" />
+
+    <!-- Font Awesome (icon đẹp hơn) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-left">
+        <img
+          src="/NCKH 2025-2026/Admin/img-admin/logokhoa.jpg"
+          alt="Logo Khoa"
+          class="logo"
+        />
+        <div class="header-title">
+          <h1>KHO DỮ LIỆU SỐ</h1>
+          <p>Khoa Đào tạo Quốc tế</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="index.html" class="active">Trang chủ</a>
+        <a href="tailieu.html">Tài liệu</a>
+        <a href="giaotrinh.html">Giáo trình</a>
+        <a href="luanvan.html">Luận văn</a>
+        <a href="hotro.html">Hỗ trợ</a>
+      </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <h2>Hệ thống kho dữ liệu số hiện đại</h2>
+      <p>
+        Nền tảng lưu trữ – tìm kiếm – chia sẻ học liệu phục vụ giảng dạy và
+        nghiên cứu
+      </p>
+
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Nhập tên tài liệu, môn học, từ khóa..."
+        />
+        <button><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="features">
+      <div class="feature-card">
+        <i class="fa-solid fa-book-open fa-2x"></i>
+        <h3>Tài liệu học tập</h3>
+        <p>Slide bài giảng, tài liệu tham khảo, học liệu số</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-book fa-2x"></i>
+        <h3>Giáo trình</h3>
+        <p>Giáo trình chính thức do Khoa và Trường ban hành</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-graduation-cap fa-2x"></i>
+        <h3>Luận văn</h3>
+        <p>Luận văn, đồ án, báo cáo tốt nghiệp các khóa</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-globe fa-2x"></i>
+        <h3>Học liệu mở</h3>
+        <p>Kết nối tài nguyên học thuật trong và ngoài nước</p>
+      </div>
+    </section>
+
+    <!-- ===== STATISTICS ===== -->
+    <section class="stats">
+      <div class="stat-box">
+        <h3>1.200+</h3>
+        <p>Tài liệu số</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>350+</h3>
+        <p>Giáo trình</p>
+      </div>
+
+      <div class="stat-box">
+        <h3>800+</h3>
+        <p>Người dùng</p>
+      </div>
+    </section>
+
+    <!-- ===== SUPPORT BAR ===== -->
+    <div class="support-bar">
+      <div class="support-item" onclick="openChat()" title="Chat hỗ trợ">
+        <i class="fa-solid fa-comments"></i>
+      </div>
+      <div class="support-item" title="Gọi điện">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      <div class="support-item" title="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </div>
+      <div class="support-item" title="Câu hỏi thường gặp">
+        <i class="fa-solid fa-circle-question"></i>
+      </div>
+    </div>
+
+    <!-- ===== CHAT POPUP ===== -->
+    <div class="chat-popup" id="chatPopup">
+      <div class="chat-header">
+        <span>Hỗ trợ trực tuyến</span>
+        <span onclick="closeChat()" style="cursor: pointer">✖</span>
+      </div>
+
+      <div class="chat-body">
+        <p><b>Bot:</b> Xin chào! Tôi có thể hỗ trợ bạn điều gì?</p>
+      </div>
+
+      <input type="text" placeholder="Nhập câu hỏi của bạn..." />
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <p>© 2025 Khoa Đào tạo Quốc tế</p>
+      <p>Email: khoquocte@edu.vn | Hotline: 0123 456 789</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="JS/script.js"></script>
+  </body>
+</html>
