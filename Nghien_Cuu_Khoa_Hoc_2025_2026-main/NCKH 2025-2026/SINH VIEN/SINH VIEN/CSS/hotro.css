@@ -1,0 +1,237 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ================= VARIABLES ================= */
+:root {
+  --blue: #0a4fa3;
+  --blue-dark: #083b7a;
+  --blue-light: #1e90ff;
+  --bg-light: #f4f9ff;
+  --text-dark: #222;
+  --gray: #666;
+  --shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+body {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* ================= HEADER ================= */
+.header {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 55px;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+}
+
+/* ================= MENU ================= */
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.menu a.active {
+  color: #ffd43b;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: #ffd43b;
+  transition: 0.3s;
+}
+
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* ================= BANNER ================= */
+.banner {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  animation: fadeSlide 0.8s ease;
+}
+
+.banner h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  opacity: 0.95;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= SUPPORT CONTAINER ================= */
+.support-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 45px 6%;
+}
+
+/* ================= SUPPORT CARD ================= */
+.support-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: 0.35s;
+}
+
+.support-card:hover {
+  transform: translateY(-8px);
+}
+
+.support-card i {
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.support-card h3 {
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
+.support-card label {
+  font-size: 14px;
+  color: var(--gray);
+  margin-top: 10px;
+  display: block;
+}
+
+.support-card input,
+.support-card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+
+.support-card input:focus,
+.support-card textarea:focus {
+  outline: none;
+  border-color: var(--blue-light);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.25);
+}
+
+.support-card p {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+/* ================= ACTIONS ================= */
+.actions {
+  margin-top: 18px;
+}
+
+.actions button {
+  width: 100%;
+  background: linear-gradient(135deg, var(--blue-light), var(--blue));
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.actions button:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+}
+
+/* ================= LOGOUT CARD ================= */
+.support-card.logout {
+  border: 2px dashed #ff6b6b;
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #ff6b6b, #e63946) !important;
+}
+
+.logout-btn:hover {
+  background: #c62828 !important;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  background: var(--blue-dark);
+  color: white;
+  text-align: center;
+  padding: 16px;
+  margin-top: 40px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .menu {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .menu a {
+    margin: 8px;
+  }
+
+  .banner h2 {
+    font-size: 26px;
+  }
+
+  .support-container {
+    padding: 30px 20px;
+  }
+}

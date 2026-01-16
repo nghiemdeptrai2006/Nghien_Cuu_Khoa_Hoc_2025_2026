@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hỗ trợ sinh viên | Kho dữ liệu số</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/hotro.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-left">
+        <img src="../IMG/logokhoa.jpg" class="logo" />
+        <div>
+          <h1>KHO DỮ LIỆU SỐ</h1>
+          <p>Khoa Đào tạo Quốc tế</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="../HTML/trangchu.html">Trang chủ</a>
+        <a href="../HTML/tailieu.html">Tài liệu</a>
+        <a href="../HTML/giaotrinh.html">Giáo trình</a>
+        <a href="../HTML/luanvan.html">Luận văn</a>
+        <a href="#" class="active">Hỗ trợ</a>
+      </nav>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+      <h2>Hỗ trợ & Tài khoản sinh viên</h2>
+      <p>Quản lý thông tin – hỗ trợ kỹ thuật – giải đáp thắc mắc</p>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="support-container">
+      <!-- ===== THÔNG TIN CÁ NHÂN ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-user fa-2x"></i>
+        <h3>Thông tin cá nhân</h3>
+
+        <label>Họ và tên</label>
+        <input type="text" value="Nguyễn Văn B" />
+
+        <label>Mã sinh viên</label>
+        <input type="text" value="SV20231234" disabled />
+
+        <label>Email</label>
+        <input type="email" value="sinhvien@edu.vn" />
+
+        <div class="actions">
+          <button>Cập nhật thông tin</button>
+        </div>
+      </div>
+
+      <!-- ===== ĐỔI MẬT KHẨU ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-lock fa-2x"></i>
+        <h3>Đổi mật khẩu</h3>
+
+        <label>Mật khẩu hiện tại</label>
+        <input type="password" />
+
+        <label>Mật khẩu mới</label>
+        <input type="password" />
+
+        <label>Xác nhận mật khẩu</label>
+        <input type="password" />
+
+        <div class="actions">
+          <button>Đổi mật khẩu</button>
+        </div>
+      </div>
+
+      <!-- ===== HỖ TRỢ KỸ THUẬT ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-headset fa-2x"></i>
+        <h3>Hỗ trợ kỹ thuật</h3>
+
+        <label>Mô tả vấn đề</label>
+        <textarea rows="4" placeholder="Nhập nội dung cần hỗ trợ..."></textarea>
+
+        <div class="actions">
+          <button>Gửi yêu cầu</button>
+        </div>
+      </div>
+
+      <!-- ===== FAQ ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-circle-question fa-2x"></i>
+        <h3>Câu hỏi thường gặp</h3>
+
+        <p>📌 Làm sao để tải tài liệu?</p>
+        <p>📌 Vì sao không xem được luận văn?</p>
+        <p>📌 Quên mật khẩu thì làm thế nào?</p>
+
+        <div class="actions">
+          <button>Xem chi tiết</button>
+        </div>
+      </div>
+
+      <!-- ===== ĐĂNG XUẤT ===== -->
+      <div class="support-card logout">
+        <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+        <h3>Đăng xuất</h3>
+        <p>Thoát khỏi hệ thống kho dữ liệu số</p>
+
+        <div class="actions">
+          <button class="logout-btn">Đăng xuất</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <p>© 2025 Khoa Đào tạo Quốc tế</p>
+      <p>Hệ thống hỗ trợ sinh viên</p>
+    </footer>
+
+    <script src="/NCKH 2025-2026/SINH VIEN/JS/hotro.js"></script>
+  </body>
+</html>
