@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho dữ liệu số - Khoa Đào tạo Quốc tế - Đại học Giao Thông Vận Tải</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header với logo trường -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <div class="logo-text">
+                        <h1>TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI</h1>
+                        <h2>Khoa Đào tạo Quốc tế</h2>
+                    </div>
+                </div>
+                <div class="project-title">
+                    <h3>KHO DỮ LIỆU SỐ</h3>
+                    <p>Nghiên cứu xây dựng hệ thống quản lý dữ liệu số</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <!-- Thông báo hệ thống -->
+            <div class="system-notice">
+                <div class="notice-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <p><strong>Thông báo:</strong> Hệ thống đang trong giai đoạn thử nghiệm. Vui lòng báo cáo lỗi nếu gặp phải.</p>
+                </div>
+            </div>
+
+            <div class="login-container">
+                <!-- Phần chọn loại đăng nhập -->
+                <div class="user-type-selector">
+                    <div class="selector-header">
+                        <h2>ĐĂNG NHẬP HỆ THỐNG</h2>
+                        <p>Vui lòng chọn loại tài khoản để đăng nhập</p>
+                    </div>
+                    
+                    <div class="selector-options">
+                        <div class="option-card active" id="admin-option" onclick="selectUserType('admin')">
+                            <div class="option-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>Quản trị viên</h3>
+                                <p>Truy cập toàn bộ hệ thống, quản lý người dùng và dữ liệu</p>
+                            </div>
+                            <div class="option-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="option-card" id="teacher-option" onclick="selectUserType('teacher')">
+                            <div class="option-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="option-content">
+                                <h3>Giảng viên</h3>
+                                <p>Truy cập dữ liệu giảng dạy, tài liệu và thông tin sinh viên</p>
+                            </div>
+                            <div class="option-indicator">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form đăng nhập -->
+                <div class="login-form-container">
+                    <form id="login-form" class="login-form">
+                        <div class="form-header">
+                            <h3 id="form-title">ĐĂNG NHẬP QUẢN TRỊ VIÊN</h3>
+                            <p id="form-subtitle">Nhập thông tin tài khoản để truy cập hệ thống</p>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="username">
+                                <i class="fas fa-user"></i> Tên đăng nhập
+                            </label>
+                            <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required>
+                            <div class="input-hint" id="username-hint">
+                                <i class="fas fa-info-circle"></i> 
+                                <span>Đối với Admin: admin_xxx, Đối với Giảng viên: gv_xxx</span>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="password">
+                                <i class="fas fa-lock"></i> Mật khẩu
+                            </label>
+                            <div class="password-container">
+                                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="input-hint">
+                                <i class="fas fa-info-circle"></i> 
+                                <span>Mật khẩu có ít nhất 8 ký tự, bao gồm chữ và số</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember">Ghi nhớ đăng nhập</label>
+                            </div>
+                            <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                        </div>
+                        
+                        <button type="submit" class="login-button" id="login-button">
+                            <i class="fas fa-sign-in-alt"></i> ĐĂNG NHẬP
+                        </button>
+                        
+                        <div class="login-info" id="login-info">
+                            <i class="fas fa-laptop"></i>
+                            <div>
+                                <p><strong>Thông tin đăng nhập mẫu:</strong></p>
+                                <p id="demo-credentials">Admin: admin_uit | Mật khẩu: admin123</p>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div class="system-features">
+                        <h4><i class="fas fa-star"></i> TÍNH NĂNG HỆ THỐNG</h4>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-database"></i>
+                                <p>Quản lý kho dữ liệu tập trung</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Báo cáo & thống kê tự động</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <p>Bảo mật phân quyền đa cấp</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Lưu trữ đám mây an toàn</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thông tin thêm về hệ thống -->
+            <div class="system-info">
+                <div class="info-card">
+                    <h4><i class="fas fa-info-circle"></i> VỀ HỆ THỐNG</h4>
+                    <p>Kho dữ liệu số Khoa Đào tạo Quốc tế là hệ thống được xây dựng nhằm lưu trữ, quản lý và khai thác dữ liệu phục vụ công tác đào tạo, nghiên cứu và quản lý.</p>
+                    <div class="info-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Tài liệu học tập</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1,200+</span>
+                            <span class="stat-label">Sinh viên</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Giảng viên</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Chương trình đào tạo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+                    <p>Trường Đại học Giao thông Vận tải</p>
+                    <p>Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+                    <p>Điện thoại: (024) 3766 3214</p>
+                    <p>Email: dtqt@utc.edu.vn</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+                    <p>Phiên bản: 1.0.0 (Beta)</p>
+                    <p>Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+                    <p>Hỗ trợ kỹ thuật: support@utc.edu.vn</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-envelope"></i></a>
+                        <a href="#"><i class="fas fa-globe"></i></a>
+                    </div>
+                    <p class="copyright">© 2023 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal thông báo -->
+    <div id="notification-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Thông báo</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message">Đăng nhập thành công!</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
