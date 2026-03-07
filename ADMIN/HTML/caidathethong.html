@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt Hệ thống | Hệ thống Quản trị</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlynguoidung.css">
+    <style>
+        .settings-dashboard { padding: 20px; }
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        /* Settings Sidebar */
+        .settings-menu {
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 15px 0;
+            align-self: start;
+        }
+        .settings-menu ul { list-style: none; padding: 0; margin: 0; }
+        .settings-menu li { padding: 12px 25px; cursor: pointer; color: #4b5563; font-weight: 500; transition: 0.2s; border-left: 4px solid transparent;}
+        .settings-menu li:hover { background: #f9fafb; color: #1e40af; }
+        .settings-menu li.active { background: #eff6ff; color: #1e40af; border-left-color: #1e40af;}
+        .settings-menu li i { margin-right: 10px; width: 20px; }
+
+        /* Settings Content Group */
+        .settings-content {
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 30px;
+        }
+        .settings-content h3 { margin-top: 0; color: #111827; border-bottom: 1px solid #e5e7eb; padding-bottom: 15px; margin-bottom: 25px;}
+
+        .settings-section { margin-bottom: 40px; }
+        .settings-section h4 { color: #374151; margin-bottom: 15px; font-size: 1.05rem; }
+
+        .setting-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px dashed #e5e7eb;
+        }
+        .setting-item:last-child { border-bottom: none; }
+        .setting-info h5 { margin: 0 0 5px 0; color: #1f2937; }
+        .setting-info p { margin: 0; color: #6b7280; font-size: 0.85rem; }
+
+        /* Toggle Switch */
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 24px;}
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;}
+        input:checked + .slider { background-color: #10b981; }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        .btn-save { background: #1e40af; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; float:right;}
+        .btn-save:hover { background: #1e3a8a; }
+        
+        .form-control { width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 6px; outline: none; margin-bottom: 10px; max-width: 400px; display:block;}
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlydetai.html">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Quản lý Đề tài</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaibao.html">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Bài báo Khoa học</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlysanpham.html">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Sản phẩm NCKH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Top Navbar -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Cài đặt Hệ thống chung</h2>
+                <p>Quản lý Tham số phân hệ, Bảo mật và Giao diện Quản trị.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm kiếm nhanh...">
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge">3</span>
+                    <!-- Dropdown Notif -->
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list">
+                            <div class="notif-item unread">
+                                <div class="notif-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                                <div class="notif-content">
+                                    <p>SV Nguyễn Văn A vừa nộp báo cáo NCKH</p>
+                                    <span>5 phút trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-check-double"></i></div>
+                                <div class="notif-content">
+                                    <p>Đề tài KT-2026-02 đã được duyệt</p>
+                                    <span>2 giờ trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="notif-content">
+                                    <p>Cảnh báo: Đề tài NN-2025 sắp hết hạn</p>
+                                    <span>1 ngày trước</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <!-- Dropdown Profile -->
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard settings-dashboard">
+            <div class="settings-grid">
+                
+                <!-- Menu Cài đặt Nội bộ -->
+                <div class="settings-menu">
+                    <ul id="settings-tabs">
+                        <li class="active" data-tab="tab-security"><i class="fa-solid fa-shield-halved"></i> Tài khoản & Bảo mật</li>
+                        <li data-tab="tab-system"><i class="fa-solid fa-sliders"></i> Tùy chọn Hệ thống</li>
+                        <li data-tab="tab-appearance"><i class="fa-solid fa-palette"></i> Giao diện & Hiển thị</li>
+                        <li data-tab="tab-backup"><i class="fa-solid fa-database"></i> Sao lưu Dữ liệu</li>
+                    </ul>
+                </div>
+
+                <!-- View Cấu hình Cụ thể -->
+                <div class="settings-content" id="settings-content-wrapper">
+                    
+                    <!-- TAB: BẢO MẬT (ĐÃ CÓ) -->
+                    <div id="tab-security" class="tab-pane active">
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-shield-halved"></i> Thông tin Bảo mật</h3>
+                            <div class="setting-item" style="display:block;">
+                                <label style="font-weight:600; margin-bottom:8px; display:block;">Email Khôi phục:</label>
+                                <input type="email" class="form-control" value="admin.nckh@university.edu.vn">
+                                
+                                <label style="font-weight:600; margin-bottom:8px; margin-top:15px; display:block;">Đổi Mật Khẩu (Admin):</label>
+                                <input type="password" class="form-control" placeholder="Mật khẩu hiện tại...">
+                                <input type="password" class="form-control" placeholder="Mật khẩu mới...">
+                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu mới...">
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-bell"></i> Tùy chọn Thông báo</h3>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Gửi Email tự động</h5>
+                                    <p>Tự động gửi email khi Giảng viên Nộp đề tài mới</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Mã hóa Dữ liệu (2FA)</h5>
+                                    <p>Bật lớp xác thực Token 2 lớp cho quyền Quản trị tối cao</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: HỆ THỐNG -->
+                    <div id="tab-system" class="tab-pane" style="display:none;">
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-sliders"></i> Tùy chọn Hệ thống</h3>
+                            
+                            <div class="setting-item" style="display:block;">
+                                <label style="font-weight:600; margin-bottom:8px; display:block;">Ngôn ngữ mặc định:</label>
+                                <select class="form-control">
+                                    <option value="vi">Tiếng Việt</option>
+                                    <option value="en">English</option>
+                                </select>
+                                
+                                <label style="font-weight:600; margin-bottom:8px; margin-top:15px; display:block;">Múi giờ hệ thống:</label>
+                                <select class="form-control">
+                                    <option value="gmt7">(UTC +07:00) Bangkok, Hanoi, Jakarta</option>
+                                    <option value="gmt8">(UTC +08:00) Beijing, Singapore</option>
+                                </select>
+
+                                <label style="font-weight:600; margin-bottom:8px; margin-top:15px; display:block;">Số dòng hiển thị mặc định trên bảng dữ liệu:</label>
+                                <select class="form-control">
+                                    <option value="10">10 dòng / trang</option>
+                                    <option value="20" selected>20 dòng / trang</option>
+                                    <option value="50">50 dòng / trang</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-server"></i> Quản lý Cache & Tối ưu tải trang</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Bật bộ nhớ đệm (Cache)</h5>
+                                    <p>Giúp tăng tốc độ tải trang nội bộ cho Giảng viên dựa trên dữ liệu tĩnh</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <button class="btn btn-outline" style="margin-top:20px; padding:10px 15px; border:1px solid #d1d5db; background:#f3f4f6; border-radius:6px; cursor:pointer;" onclick="alert('Đã xóa Cache phiên bản cũ thành công!')"><i class="fa-solid fa-trash"></i> Xóa Cache ngay</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB: GIAO DIỆN -->
+                    <div id="tab-appearance" class="tab-pane" style="display:none;">
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-palette"></i> Giao diện & Hiển thị màu sắc</h3>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>Chế độ Tối (Dark Mode)</h5>
+                                    <p>Đảo màu giao diện sang đen, bảo vệ mắt khi làm việc buổi đêm</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item" style="display:block; margin-top:20px;">
+                                <label style="font-weight:600; margin-bottom:12px; display:block;">Màu sắc chủ đạo (Primary Color Pattern):</label>
+                                <div style="display:flex; gap:15px;">
+                                    <div style="width:35px; height:35px; border-radius:50%; background:#1e40af; cursor:pointer; border:3px solid #60a5fa; box-shadow:0 0 5px rgba(0,0,0,0.3);"></div>
+                                    <div style="width:35px; height:35px; border-radius:50%; background:#10b981; cursor:pointer;"></div>
+                                    <div style="width:35px; height:35px; border-radius:50%; background:#f59e0b; cursor:pointer;"></div>
+                                    <div style="width:35px; height:35px; border-radius:50%; background:#8b5cf6; cursor:pointer;"></div>
+                                </div>
+                                
+                                <label style="font-weight:600; margin-bottom:8px; margin-top:25px; display:block;">Cỡ chữ toàn cục của web biểu đồ:</label>
+                                <select class="form-control">
+                                    <option value="small">Nhỏ gọn (12px)</option>
+                                    <option value="normal" selected>Bình thường - Khuyên dùng (14px)</option>
+                                    <option value="large">Lớn, dễ nhìn cho người lớn tuổi(16px)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-image"></i> Tùy chỉnh Logo & Hình ảnh thương hiệu</h3>
+                            <div style="display:flex; align-items:center; gap:20px; margin-top:15px;">
+                                <div style="width:100px; height:100px; border:2px dashed #cbd5e1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:30px; color:#94a3b8; background:#f8fafc;">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <div>
+                                    <button class="btn" style="background:#e2e8f0; font-weight:600; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;"><i class="fa-solid fa-folder-open"></i> Upload ảnh từ máy tính...</button>
+                                    <p style="color:#6b7280; font-size:0.85rem; margin-top:10px;"><i class="fa-solid fa-circle-info"></i> Chỉ chấp nhận PNG, JPG tối đa 2MB. Khuyên dùng tỉ lệ vuông 1:1 trong suốt.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: SAO LƯU -->
+                    <div id="tab-backup" class="tab-pane" style="display:none;">
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-database"></i> Tự động Sao lưu SQL Data</h3>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h5>CronJob: Sao lưu DB hằng ngày</h5>
+                                    <p>Máy chủ Data chạy tự kéo snapshot dump dữ liệu ẩn vào lúc 02:00 sáng</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item" style="display:block;">
+                                <label style="font-weight:600; margin-bottom:8px; display:block;">Vòng đời lưu trữ bản ghi tối đa:</label>
+                                <select class="form-control">
+                                    <option value="1">Trong 1 Tháng</option>
+                                    <option value="3">Trong 1 Quý (3 Ctháng)</option>
+                                    <option value="6" selected>Nửa năm bản lề (6 Tháng)</option>
+                                    <option value="12">1 Năm trọn vẹn</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3><i class="fa-solid fa-clock-rotate-left"></i> Công cụ Phục hồi & Dump Manual</h3>
+                            <div style="display:flex; gap:15px; margin-top:15px;">
+                                <button class="btn btn-primary" onclick="alert('Đang lock read-only và nén dữ liệu SQL... Vui lòng không tắt máy hay F5!')" style="background:#10b981; color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer;"><i class="fa-solid fa-download"></i> Tạo bản Backup ngay (Manual)</button>
+                                <button class="btn" onclick="alert('Module khôi phục đã bị khóa. Vui lòng lấy OTP 2FA từ app.')" style="background:#fee2e2; color:#dc2626; padding:10px 15px; border:none; border-radius:6px; cursor:pointer;"><i class="fa-solid fa-file-import"></i> Cấp quyền Khôi phục từ File Dump (.sql)</button>
+                            </div>
+                            <p style="margin-top:20px; color:#4b5563; font-size:0.9rem; background:#f3f4f6; padding:10px; border-radius:6px; border-left:3px solid #10b981;"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Trace Backup gần nhất: <strong>Thứ Sáu, 06/03/2026 02:00:15 GMT+7</strong> (Status: SUCCESS)</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 35px; border-top: 2px solid #e5e7eb; padding-top: 25px;">
+                        <button class="btn-save" onclick="saveSettings()"><i class="fa-solid fa-floppy-disk"></i> THIẾT KẾ CẤU HÌNH VÀ LƯU LẠI</button>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- JS -->
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script>
+        // Xử lý logic chuyển đổi Tab Settings
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('#settings-tabs li');
+            const panes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Xóa class active ở mọi nơi
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panes.forEach(p => p.style.display = 'none');
+
+                    // Gắn active vào Thẻ li đc chọn
+                    tab.classList.add('active');
+                    
+                    // Hiển thị Khung nội dung tương ứng
+                    const targetId = tab.getAttribute('data-tab');
+                    document.getElementById(targetId).style.display = 'block';
+                });
+            });
+        });
+
+        // Nút Lưu cấu hình giả lập (Fake API req)
+        function saveSettings() {
+            alert("✅ Thông báo Hệ thống ERP:\n\nĐã ghi nhận thay đổi! Cấu trúc Cài đặt hệ thống, Giao diện và CronJob vòng đời Backup đã được lưu đè lên máy chủ server thành công.");
+        }
+    </script>
+</body>
+</html>

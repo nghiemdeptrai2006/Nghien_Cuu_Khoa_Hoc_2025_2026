@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tài liệu | Hệ thống Quản trị NCKH</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlytailieu.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlydetai.html">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Quản lý Đề tài</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaibao.html">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Bài báo Khoa học</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlysanpham.html">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Sản phẩm NCKH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Top Navbar -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Học liệu</h2>
+                <p>Quản lý các tài liệu, bài giảng và giáo trình của Hệ thống.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm kiếm nhanh...">
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge">3</span>
+                    <!-- Dropdown Notif -->
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list">
+                            <div class="notif-item unread">
+                                <div class="notif-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                                <div class="notif-content">
+                                    <p>SV Nguyễn Văn A vừa nộp báo cáo NCKH</p>
+                                    <span>5 phút trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-check-double"></i></div>
+                                <div class="notif-content">
+                                    <p>Đề tài KT-2026-02 đã được duyệt</p>
+                                    <span>2 giờ trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="notif-content">
+                                    <p>Cảnh báo: Đề tài NN-2025 sắp hết hạn</p>
+                                    <span>1 ngày trước</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <!-- Dropdown Profile -->
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard document-dashboard">
+            
+            <!-- TOOLBAR -->
+            <div class="doc-toolbar">
+                <div class="toolbar-left">
+                    <button class="btn btn-primary" onclick="openEditModal('', '')"><i class="fa-solid fa-upload"></i> Tải tài liệu lên</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-folder-plus"></i> Tạo thư mục</button>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn btn-outline"><i class="fa-solid fa-filter"></i> Lọc tài liệu</button>
+                </div>
+            </div>
+
+            <!-- DOCUMENT LIST -->
+            <div class="document-grid">
+                <!-- Card 1 -->
+                <div class="doc-card">
+                    <div class="doc-icon"><i class="fa-solid fa-file-pdf fa-2x"></i></div>
+                    <div class="doc-details">
+                        <h3>Lập trình C cơ bản</h3>
+                        <p>Danh mục: Nhập môn CNTT</p>
+                        <span>PDF • 2.5MB • Đăng bởi: TS. Nguyễn A</span>
+                    </div>
+                    <div class="doc-actions">
+                        <a onclick="openViewModal('Lập trình C cơ bản', 'Nhập môn CNTT', 'PDF • 2.5MB')" class="btn-sm btn-view">Xem</a>
+                        <a onclick="openEditModal('Lập trình C cơ bản', 'Nhập môn CNTT')" class="btn-sm btn-edit">Sửa</a>
+                        <a href="#" class="btn-sm btn-delete">Xóa</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="doc-card">
+                    <div class="doc-icon"><i class="fa-solid fa-file-powerpoint fa-2x"></i></div>
+                    <div class="doc-details">
+                        <h3>Cơ sở dữ liệu</h3>
+                        <p>Danh mục: Database Systems</p>
+                        <span>PPT • 5.1MB • Đăng bởi: ThS. Lê B</span>
+                    </div>
+                    <div class="doc-actions">
+                        <a onclick="openViewModal('Cơ sở dữ liệu', 'Database Systems', 'PPT • 5.1MB')" class="btn-sm btn-view">Xem</a>
+                        <a onclick="openEditModal('Cơ sở dữ liệu', 'Database Systems')" class="btn-sm btn-edit">Sửa</a>
+                        <a href="#" class="btn-sm btn-delete">Xóa</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="doc-card">
+                    <div class="doc-icon"><i class="fa-solid fa-file-word fa-2x"></i></div>
+                    <div class="doc-details">
+                        <h3>Hướng dẫn đồ án</h3>
+                        <p>Danh mục: Project</p>
+                        <span>DOCX • 1.8MB • Đăng bởi: Ban Đào tạo</span>
+                    </div>
+                    <div class="doc-actions">
+                        <a onclick="openViewModal('Hướng dẫn đồ án', 'Project', 'DOCX • 1.8MB')" class="btn-sm btn-view">Xem</a>
+                        <a onclick="openEditModal('Hướng dẫn đồ án', 'Project')" class="btn-sm btn-edit">Sửa</a>
+                        <a href="#" class="btn-sm btn-delete">Xóa</a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="doc-card">
+                    <div class="doc-icon"><i class="fa-solid fa-file-excel fa-2x"></i></div>
+                    <div class="doc-details">
+                        <h3>Mẫu bảng điểm</h3>
+                        <p>Danh mục: Toán Giải tích</p>
+                        <span>XLSX • 1.1MB • Đăng bởi: Phòng Khảo thí</span>
+                    </div>
+                    <div class="doc-actions">
+                        <a onclick="openViewModal('Mẫu bảng điểm', 'Toán Giải tích', 'XLSX • 1.1MB')" class="btn-sm btn-view">Xem</a>
+                        <a onclick="openEditModal('Mẫu bảng điểm', 'Toán Giải tích')" class="btn-sm btn-edit">Sửa</a>
+                        <a href="#" class="btn-sm btn-delete">Xóa</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== MODAL XEM CHI TIẾT TÀI LIỆU ===== -->
+    <div id="viewModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="viewModalTitle">Tên Tài Liệu</h3>
+          <button class="close-btn" onclick="closeViewModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <p id="viewModalSubject"><strong>Danh mục:</strong> <span>...</span></p>
+          <p id="viewModalMeta"><strong>Định dạng:</strong> <span>...</span></p>
+          <div class="preview-box">
+            <i class="fas fa-file-alt fa-3x" style="color: #ccc; margin-bottom: 10px;"></i>
+            <p>Bản xem trước nội dung không khả dụng cho định dạng này.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="alert('Đang tải file xuống máy tính...')"><i class="fas fa-download"></i> Tải xuống</button>
+          <button class="btn btn-outline" onclick="closeViewModal()" style="margin-left: 10px;">Đóng</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MODAL SỬA TÀI LIỆU ===== -->
+    <div id="editModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Cập nhật Hệ thống Tài liệu</h3>
+          <button class="close-btn" onclick="closeEditModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tên tài liệu:</label>
+            <input type="text" id="editDocName" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Môn học/Danh mục:</label>
+            <input type="text" id="editDocSubject" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Cập nhật File mới (để trống nếu giữ nguyên):</label>
+            <input type="file" class="form-control" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="saveDocument()"><i class="fas fa-save"></i> Lưu thông tin</button>
+          <button class="btn btn-outline" onclick="closeEditModal()" style="margin-left: 10px;">Hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlytailieu.js"></script>
+</body>
+</html>

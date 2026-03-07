@@ -1,0 +1,132 @@
+const fs = require('fs');
+
+const files = [
+    'trangchu.html', 'quanlynguoidung.html', 'quanlydetai.html', 
+    'quanlytailieu.html', 'quanlybaibao.html', 'quanlysanpham.html', 
+    'quanlybaocao.html'
+];
+
+const replacements = {
+    'TÃ¬m kiáº¿m nhanh': 'Tìm kiếm nhanh',
+    'ThÃ´ng bÃ¡o má»›i': 'Thông báo mới',
+    'Ä áº¡nh dáº¥u Ä‘Ã£ Ä‘á» c': 'Đánh dấu đã đọc',
+    'SV Nguyá»…n VÄƒn A vá»«a ná»™p bÃ¡o cÃ¡o NCKH': 'SV Nguyễn Văn A vừa nộp báo cáo NCKH',
+    'phÃºt trÆ°á»›c': 'phút trước',
+    'Ä á»  tÃ i KT-2026-02 Ä‘Ã£ Ä‘Æ°á»£c duyá»‡t': 'Đề tài KT-2026-02 đã được duyệt',
+    'giá»  trÆ°á»›c': 'giờ trước',
+    'Cáº£nh bÃ¡o: Ä á»  tÃ i NN-2025 sáº¯p háº¿t háº¡n': 'Cảnh báo: Đề tài NN-2025 sắp hết hạn',
+    'ngÃ y trÆ°á»›c': 'ngày trước',
+    'Xem táº¥t cáº£ thÃ´ng bÃ¡o': 'Xem tất cả thông báo',
+    'Quáº£n trá»‹ viÃªn': 'Quản trị viên',
+    'Há»“ sÆ¡ cÃ¡ nhÃ¢n': 'Hồ sơ cá nhân',
+    'CÃ i Ä‘áº·t Há»‡ thá»‘ng': 'Cài đặt Hệ thống',
+    'CÃ i Ä‘áº·t há»‡ thá»‘ng': 'Cài đặt hệ thống',
+    'Ä Äƒng xuáº¥t': 'Đăng xuất',
+    'Tá»•ng quan': 'Tổng quan',
+    'Quáº£n lÃ½ NgÆ°á» i dÃ¹ng': 'Quản lý Người dùng',
+    'Quáº£n lÃ½ Ä á»  tÃ i': 'Quản lý Đề tài',
+    'Quáº£n lÃ½ TÃ i liá»‡u': 'Quản lý Tài liệu',
+    'BÃ i bÃ¡o Khoa há» c': 'Bài báo Khoa học',
+    'Sáº£n pháº©m NCKH': 'Sản phẩm NCKH',
+    'BÃ¡o cÃ¡o Thá»‘ng kÃª': 'Báo cáo Thống kê',
+    'ThÃªm NgÆ°á» i dÃ¹ng má»›i': 'Thêm Người dùng mới',
+    'Nháº­p tá»« Excel': 'Nhập từ Excel',
+    'Táº¥t cáº£ vai trÃ²': 'Tất cả vai trò',
+    'Giáº£ng viÃªn \/ NghiÃªn cá»©u viÃªn': 'Giảng viên / Nghiên cứu viên',
+    'Sinh viÃªn \/ Há» c viÃªn': 'Sinh viên / Học viên',
+    'HÃ nh Ä‘á»™ng': 'Hành động',
+    'Há»  vÃ  TÃªn': 'Họ và Tên',
+    'Tráº¡ng thÃ¡i': 'Trạng thái',
+    'Vai trÃ²': 'Vai trò',
+    'Hoáº¡t Ä‘á»™ng': 'Hoạt động',
+    'Nguyá»…n VÄƒn A': 'Nguyễn Văn A',
+    'CÃ´ng nghá»‡ ThÃ´ng tin': 'Công nghệ Thông tin',
+    'Giáº£ng viÃªn': 'Giảng viên',
+    'Sinh viÃªn': 'Sinh viên',
+    'Sá»­a': 'Sửa',
+    'Tráº§n Thá»‹ BÃ¬nh': 'Trần Thị Bình',
+    'Lá»›p KHTN 2021A': 'Lớp KHTN 2021A',
+    'LÃª Há»¯u C': 'Lê Hữu C',
+    'Kinh Táº¿': 'Kinh Tế',
+    'Má»Ÿ khÃ³a': 'Mở khóa',
+    'Ä Ã£ khÃ³a': 'Đã khóa',
+    'TrÆ°á»›c': 'Trước',
+    'LÆ°u dá»¯ liá»‡u': 'Lưu dữ liệu',
+    'Há»§y': 'Hủy',
+    'Ä á»ƒ trá»‘ng = Máº·c Ä‘á»‹nh': 'Để trống = Mặc định',
+    'Nháº­p há»  tÃªn Ä‘áº§y Ä‘á»§': 'Nhập họ tên đầy đủ',
+    'KhÃ³a TK': 'Khóa TK',
+    'MÃ£ Ä D': 'Mã ĐD',
+    'Khá»Ÿi táº¡o': 'Khởi tạo',
+    'Máº­t kháº©u khá»Ÿi táº¡o': 'Mật khẩu khởi tạo',
+    'Quáº£n lÃ½': 'Quản lý',
+    'Quáº£n lÃ½ BÃ i bÃ¡o Khoa há» c': 'Quản lý Bài báo Khoa học',
+    'BÃ i bÃ¡o': 'Bài báo',
+    'Sáº£n pháº©m': 'Sản phẩm',
+    'Thá»‘ng kÃª': 'Thống kê',
+    'TÃ i liá»‡u': 'Tài liệu',
+    'Ä‘á» ': 'đề',
+    'tÃ i': 'tài',
+    'CÃ¡c': 'Các',
+    'Há»‡ thá»‘ng Quáº£n trá»‹ NCKH': 'Hệ thống Quản trị NCKH',
+    'Hiá»ƒn thá»‹': 'Hiển thị',
+    'phÃ¢n quyá» n': 'phân quyền',
+    'danh sÃ¡ch': 'danh sách',
+    'CÃ¡n bá»™': 'Cán bộ',
+    'Theo dÃµi': 'Theo dõi',
+    'tiáº¿n Ä‘á»™': 'tiến độ',
+    'mÃºc Ä‘Ã­ch': 'mục đích',
+    'thá»±c hiá»‡n': 'thực hiện',
+    'cá»§a': 'của',
+    'phÃª duyá»‡t': 'phê duyệt',
+    'cÃ´ng bá»‘': 'công bố',
+    'quá»‘c táº¿': 'quốc tế',
+    'trong nÆ°á»›c': 'trong nước',
+    'GV/SV': 'GV/SV',
+    'LÆ°u trá»¯': 'Lưu trữ',
+    'biá»ƒu máº«u': 'biểu mẫu',
+    'hÆ°á»›ng dáº«n': 'hướng dẫn',
+    'quy Ä‘á»‹nh': 'quy định',
+    'bÃ¡o cÃ¡o': 'báo cáo',
+    'tá»•ng há»£p': 'tổng hợp',
+    'káº¿t quáº£': 'kết quả',
+    'tá»«ng': 'từng',
+    'nÄƒm': 'năm',
+    'há» c': 'học',
+    'ThÃªm': 'Thêm',
+    'má»›i': 'mới',
+    'XÃ³a': 'Xóa',
+    'TÃ¬m kiáº¿m': 'Tìm kiếm',
+    'ChÆ°a': 'Chưa',
+    'Ä ang': 'Đang',
+    'HoÃ n thÃ nh': 'Hoàn thành',
+    'Ä Ã£': 'Đã',
+    'nghiÃªn cá»©u': 'nghiên cứu',
+    'cÃ¡c': 'các',
+    'NgÆ°á» i': 'Người',
+    'dÃ¹ng': 'dùng',
+    'Ä‘Ã£': 'đã',
+    'Ä‘á» c': 'đọc',
+    'NghiÃªn cá»©u': 'Nghiên cứu',
+    'Sáº£n': 'Sản',
+    'pháº©m': 'phẩm',
+    'Khoa há» c': 'Khoa học',
+    'Quáº£n': 'Quản',
+    'trá»‹': 'trị'
+};
+
+files.forEach(file => {
+    if (fs.existsSync(file)) {
+        let content = fs.readFileSync(file, 'utf8');
+        for (let oldText in replacements) {
+            content = content.split(oldText).join(replacements[oldText]);
+        }
+        
+        // Cụm nhỏ lẻ còn sót
+        content = content.replace(/TÃ¬m kiáº¿m/g, 'Tìm kiếm');
+        content = content.replace(/quáº£n lÃ½/gi, 'quản lý');
+        
+        fs.writeFileSync(file, content, 'utf8');
+        console.log('Fixed ' + file);
+    }
+});

@@ -1,0 +1,108 @@
+/* =========================================
+   PRODUCT MANAGEMENT DASHBOARD (ADMIN)
+   => Inherits from quanlynguoidung.css
+   ========================================= */
+
+.product-dashboard {
+    padding: 20px;
+}
+
+/* ================= PRODUCT GRID ================= */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f3f4f6;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Type Badge */
+.prd-type {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+}
+.type-patent { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+.type-solution { background: linear-gradient(135deg, #047857, #10b981); }
+.type-book { background: linear-gradient(135deg, #b45309, #f59e0b); }
+.type-software { background: linear-gradient(135deg, #5b21b6, #8b5cf6); }
+
+/* Product Info */
+.prd-info {
+    padding: 20px;
+    flex: 1;
+}
+
+.prd-info h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+.prd-info p {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+}
+
+.prd-info p i {
+    width: 20px;
+    color: #9ca3af;
+    margin-right: 5px;
+}
+
+/* Footer Actions */
+.prd-footer {
+    padding: 15px 20px;
+    background: #f9fafb;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-sm {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-view { flex: 1; background: #e5e7eb; color: #374151; }
+.btn-view:hover { background: #d1d5db; }
+
+.btn-edit { background: #fee2e2; color: #dc2626; width: 40px; }
+.btn-edit:hover { background: #f87171; color: white; }
+
+.btn-approve { background: #10b981; color: white; }
+.btn-approve:hover { background: #059669; }
