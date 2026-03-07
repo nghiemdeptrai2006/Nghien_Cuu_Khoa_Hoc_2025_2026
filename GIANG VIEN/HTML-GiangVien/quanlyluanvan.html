@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Luận văn | Kho dữ liệu số</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/shared.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/quanlyluanvan.css?v=2" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG-giangvien/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>CỔNG GIẢNG VIÊN</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="quanlytailieu.html"><i class="fas fa-book-open"></i> QL Tài liệu</a>
+          <a href="quanlygiaotrinh.html"><i class="fas fa-book"></i> QL Giáo trình</a>
+          <a href="quanlyluanvan.html" class="active"><i class="fas fa-graduation-cap"></i> QL Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span><i class="fas fa-user-circle"></i> Giảng viên</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+      <h2>Luận văn & Đồ án tốt nghiệp</h2>
+      <p>
+        Quản lý – lưu trữ – tra cứu luận văn, đồ án, báo cáo nghiên cứu sinh
+        viên
+      </p>
+    </section>
+
+    <!-- ===== TOOL BAR ===== -->
+    <section class="tool-bar">
+      <button><i class="fa-solid fa-upload"></i> Tải luận văn</button>
+
+      <button><i class="fa-solid fa-folder-plus"></i> Tạo thư mục</button>
+
+      <button><i class="fa-solid fa-filter"></i> Lọc theo năm / ngành</button>
+
+      <input
+        type="text"
+        placeholder="Tìm theo tên đề tài, sinh viên, giảng viên..."
+      />
+    </section>
+
+    <!-- ===== DOCUMENT LIST ===== -->
+    <section class="document-list" id="documentList">
+        <!-- Render từ JS -->
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Cổng Giảng Viên - Khoa ĐTQT</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Phòng 000, Tòa nhà X</p>
+            <p><i class="fas fa-phone"></i> (024) 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> giangvien@edu.vn</p>
+            <div class="social-icons">
+              <a href="#"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Hệ thống Kho Học liệu Số - Khoa Đào tạo Quốc tế
+        </div>
+      </div>
+    </footer>
+    <!-- JS -->
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS-GiangVien/quanlyluanvan.js"></script>
+  </body>
+</html>

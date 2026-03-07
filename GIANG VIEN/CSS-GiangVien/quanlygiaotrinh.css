@@ -1,0 +1,182 @@
+/* ================= QUẢN LÝ GIÁO TRÌNH CSS ================= */
+
+/* ===== BANNER / HERO ===== */
+.banner {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: white;
+  text-align: center;
+  padding: 70px 20px;
+  animation: fadeSlide 1s ease;
+}
+
+.banner h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+/* ===== TOOL BAR ===== */
+.tool-bar {
+  background: white;
+  padding: 25px 40px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.tool-bar button {
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tool-bar button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(11, 94, 215, 0.4);
+}
+
+.tool-bar input {
+  flex: 1;
+  max-width: 320px;
+  padding: 12px 15px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.tool-bar input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.2);
+}
+
+/* ===== DOCUMENT LIST ===== */
+.document-list {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* ===== CARD ===== */
+.doc-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.35s;
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.doc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(10, 79, 163, 0.2);
+}
+
+.doc-cover {
+  width: 80px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.doc-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doc-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-info h3 {
+  color: var(--blue);
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.doc-info p {
+  font-size: 13px;
+  margin: 5px 0;
+  color: var(--gray);
+}
+
+.doc-info span {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+/* ===== ACTIONS ===== */
+.doc-actions {
+  margin-top: 15px;
+}
+
+.doc-actions a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 6px;
+  background: var(--blue-light);
+  color: white;
+  transition: 0.3s;
+}
+
+.doc-actions a:hover {
+  background: var(--blue-dark);
+  transform: scale(1.05);
+}
+
+
+
+/* ===== ANIMATION ===== */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .tool-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tool-bar input {
+    max-width: 100%;
+  }
+
+  .banner h2 {
+    font-size: 26px;
+  }
+
+  .document-list {
+    padding: 30px 15px;
+  }
+}

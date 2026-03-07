@@ -1,0 +1,352 @@
+/* ================= TỔNG QUAN ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ================= BIẾN MÀU DÙNG CHUNG ================= */
+:root {
+  --blue: #0b5ed7;
+  --blue-dark: #083d8c;
+  --blue-light: #4da3ff;
+  --bg-light: #f4f8ff;
+  --text-dark: #222;
+  --gray: #666;
+  --success: #2e7d32;
+  --danger: #d32f2f;
+  --warning: #f57c00;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 15px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 12px 25px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  transition: all var(--transition-speed);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ================= BUTTONS CHUNG ================= */
+.btn-primary {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-speed);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  color: white;
+}
+
+/* ================= HEADER CAO CẤP ================= */
+.header {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  color: white;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: transform var(--transition-speed);
+}
+
+.header .logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-text h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.logo-text p {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ================= MENU CHUNG ================= */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu a {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.menu a i {
+  margin-right: 6px;
+}
+
+.menu a:hover, .menu a.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: #ffd43b;
+  transition: width var(--transition-speed);
+  border-radius: 3px 3px 0 0;
+}
+
+.menu a:hover::after, .menu a.active::after {
+  width: 80%;
+}
+
+/* User Profile Menu */
+.user-profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-profile-menu span {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-logout {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-speed);
+}
+
+.btn-logout:hover {
+  background: #ff4757;
+  transform: rotate(10deg);
+}
+
+/* Hamburger Menu Button */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ================= BANNER / HERO CHUNG ================= */
+.page-banner {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+.page-banner h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.page-banner p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= FOOTER CHUNG ================= */
+.footer {
+  background: #061e40;
+  color: white;
+  padding: 50px 0 20px;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--blue-light);
+}
+
+.footer-section p {
+  margin-bottom: 12px;
+  color: #a0aec0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-section p i {
+  color: var(--blue-light);
+  margin-top: 4px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: var(--transition-speed);
+}
+
+.social-icons a:hover {
+  background: var(--blue-light);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVE ================= */
+@media screen and (max-width: 900px) {
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--blue-dark);
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu a {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .menu a::after {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+  
+  .user-profile-menu {
+    margin: 10px 20px;
+    padding: 15px 0 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    justify-content: space-between;
+  }
+}
