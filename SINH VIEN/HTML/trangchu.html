@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kho dữ liệu số | Khoa Đào tạo Quốc tế</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/trangchu.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html" class="active"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h2>Hệ thống lưu trữ & tra cứu học liệu số</h2>
+      <p>Phục vụ sinh viên – giảng viên – cán bộ khoa</p>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Nhập tên tài liệu, môn học, từ khóa..."
+        />
+        <button id="searchBtn">Tìm kiếm</button>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <div class="feature-card" onclick="window.location.href='tailieu.html'" style="cursor: pointer;">
+        <h3>📘 Tài liệu học tập</h3>
+        <p>Slide, bài giảng, tài liệu tham khảo</p>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='giaotrinh.html'" style="cursor: pointer;">
+        <h3>📗 Giáo trình</h3>
+        <p>Giáo trình chính thức của khoa</p>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='luanvan.html'" style="cursor: pointer;">
+        <h3>📙 Luận văn</h3>
+        <p>Luận văn, báo cáo tốt nghiệp</p>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='hoclieumo.html'" style="cursor: pointer;">
+        <h3>🌐 Học liệu mở</h3>
+        <p>Tài nguyên chia sẻ miễn phí</p>
+      </div>
+    </section>
+
+    <!-- STATISTICS -->
+    <section class="stats">
+      <div class="stat-box">
+        <h3><span class="counter" data-target="1200">0</span>+</h3>
+        <p>Tài liệu</p>
+      </div>
+      <div class="stat-box">
+        <h3><span class="counter" data-target="350">0</span>+</h3>
+        <p>Giáo trình</p>
+      </div>
+      <div class="stat-box">
+        <h3><span class="counter" data-target="800">0</span>+</h3>
+        <p>Sinh viên truy cập</p>
+      </div>
+    </section>
+
+    <!-- SUPPORT BAR RIGHT -->
+    <div class="support-bar">
+      <div class="support-item" id="chatBtn">💬</div>
+      <div class="support-item">📞</div>
+      <div class="support-item">✉️</div>
+      <div class="support-item">❓</div>
+    </div>
+
+    <!-- CHAT -->
+    <div class="chat-popup" id="chatPopup">
+      <div class="chat-header">
+        Chat hỗ trợ
+        <span id="closeChat">✖</span>
+      </div>
+
+      <div class="chat-body" id="chatBody">
+        <div class="bot-msg">Xin chào! Tôi có thể giúp gì cho bạn?</div>
+      </div>
+
+      <form id="chatForm">
+        <input type="text" placeholder="Nhập câu hỏi..." />
+      </form>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop">↑</button>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Khoa Đào tạo Quốc tế</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Phòng 000, Tòa nhà X</p>
+            <p><i class="fas fa-phone"></i> (024) 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> khoquocte@edu.vn</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Hệ thống Kho Học liệu Số - Khoa Đào tạo Quốc tế
+        </div>
+      </div>
+    </footer>
+
+    <script src="../JS/trangchu.js"></script>
+  </body>
+</html>

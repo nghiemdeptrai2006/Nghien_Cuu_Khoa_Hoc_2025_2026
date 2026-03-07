@@ -1,0 +1,350 @@
+/* ================= VARIABLES ================= */
+:root {
+  /* Premium Colors (Inspired by Login Page) */
+  --primary-color: #1a237e;
+  --secondary-color: #283593;
+  --accent-color: #ffd700;
+  --accent-hover: #ffea00;
+  
+  --bg-color: #f5f7fa;
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  
+  --text-dark: #333333;
+  --text-light: #666666;
+  --text-white: #ffffff;
+  
+  --border-color: #e0e0e0;
+  
+  /* Compatibility variables for page-specific CSS */
+  --blue: var(--primary-color);
+  --blue-dark: var(--secondary-color);
+  --blue-light: #5c6bc0;
+  --bg-light: var(--bg-color);
+  --gray: var(--text-light);
+  --shadow: var(--shadow-md);
+  
+  /* Shadows */
+  --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 15px rgba(0,0,0,0.1);
+  --shadow-hover: 0 15px 30px rgba(26, 35, 126, 0.15);
+  
+  /* Layout */
+  --max-width: 1200px;
+  --border-radius: 12px;
+}
+
+/* ================= RESET & BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", "Open Sans", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Utilities */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+/* ================= HEADER ================= */
+.header {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: var(--text-white);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.header-left h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+.header-left p {
+  font-size: 0.95rem;
+  color: #c5cae9;
+  font-weight: 400;
+}
+
+/* NAVIGATION MENU */
+.menu {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.menu a {
+  color: var(--text-white);
+  font-weight: 500;
+  font-size: 1.05rem;
+  position: relative;
+  padding: 8px 5px;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.menu a i {
+  font-size: 1.1rem;
+  color: var(--text-white);
+  opacity: 0.8;
+  transition: color 0.3s;
+}
+
+.menu a:hover {
+  color: var(--accent-color);
+}
+
+.menu a:hover i {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+/* Animated Border Bottom */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.menu a:hover::after,
+.menu a.active::after {
+  width: 100%;
+}
+
+.menu a.active {
+  color: var(--accent-color);
+}
+.menu a.active i {
+  color: var(--accent-color);
+}
+
+/* User Profile Mini */
+.user-profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-profile-menu span {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.btn-logout {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+/* Menu Toggle Mobile (Hidden by default) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  padding: 40px 0 20px;
+  margin-top: auto; /* Push footer to bottom */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.footer-section h4 {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-section h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--accent-color);
+}
+
+.footer-section p {
+  color: #c5cae9;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.footer-section p i {
+  color: #8c9eff;
+  width: 20px;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9fa8da;
+  font-size: 0.9rem;
+}
+
+/* ================= COMPONENT: BUTTONS ================= */
+.btn-primary {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(26, 35, 126, 0.3);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu.active {
+    display: flex;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .user-profile-menu {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-top: 15px;
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}

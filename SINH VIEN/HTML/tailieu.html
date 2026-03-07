@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tài liệu học tập | Khoa ĐTQT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/tailieu.css?v=2" />
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html" class="active"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="banner">
+      <h2>Kho tài liệu số</h2>
+      <p>Tra cứu và tải tài liệu học tập theo ngành</p>
+    </section>
+
+    <section class="search-area">
+      <input type="text" placeholder="Nhập tên môn học, từ khóa..." />
+      <button>Tìm kiếm</button>
+      <!-- Nút Đăng Tải Tài liệu Mới -->
+      <button class="btn-primary" onclick="openUploadModal()" style="margin-left: 15px; background: #0b5ed7; color: white; padding: 10px 20px; border-radius: 5px; cursor: pointer; border: none;"><i class="fas fa-cloud-upload-alt"></i> Đăng Tài liệu</button>
+    </section>
+
+    <section class="document-list">
+      <!-- Dữ liệu JS tĩnh đã bị xoá. Sẽ render API vào đây -->
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Khoa Đào tạo Quốc tế</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Phòng 000, Tòa nhà X</p>
+            <p><i class="fas fa-phone"></i> (024) 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> khoquocte@edu.vn</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Hệ thống Kho Học liệu Số - Khoa Đào tạo Quốc tế
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MODAL BẢNG ĐĂNG TÀI LIỆU ===== -->
+    <div id="uploadModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-file-upload"></i> Đăng tải Tài liệu tự do</h3>
+          <button class="close-btn" onclick="closeUploadModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="uploadForm">
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label>Tên Tài liệu *</label>
+              <input type="text" id="docTitle" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+              <div class="form-group" style="flex: 1;">
+                <label>Ngành học *</label>
+                <select id="docMajor" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                  <option value="CNTT">CNTT</option>
+                  <option value="Kinh tế">Kinh tế</option>
+                  <option value="Kỹ thuật">Kỹ thuật</option>
+                  <option value="Môn chung">Môn chung đại cương</option>
+                </select>
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label>Năm xuất bản *</label>
+                <input type="number" id="docYear" required value="2025" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label>Ảnh bìa (JPG/PNG) - Không bắt buộc</label>
+              <input type="file" id="docCover" accept="image/*" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px dashed #ccc; border-radius: 4px;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label>File đính kèm (PDF/Word/Excel) *</label>
+              <input type="file" id="docFile" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px dashed #ccc; border-radius: 4px;">
+            </div>
+
+            <div class="modal-footer" style="text-align: right; padding: 0;">
+              <button type="submit" class="btn-download" style="padding: 10px 20px; border-radius: 6px; border: none; background: #0b5ed7; color: white; cursor: pointer;"><i class="fas fa-cloud-upload-alt"></i> Tải lên</button>
+              <button type="button" class="btn-cancel" onclick="closeUploadModal()" style="padding: 10px 20px; border-radius: 6px; border: none; background: #6c757d; color: white; cursor: pointer; margin-left: 10px;">Đóng</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS/tailieu.js"></script>
+  </body>
+</html>
