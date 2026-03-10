@@ -1,0 +1,41 @@
+{
+  "updated_at": "2026-02-28T11:32:00Z",
+  "working_on": {
+    "feature": "Spring Security & JWT",
+    "task": "Phase 04 Completed",
+    "status": "done",
+    "files": [
+      "backend/src/main/java/com/nckh/backend/security/*",
+      "backend/src/main/java/com/nckh/backend/config/SecurityConfig.java",
+      "backend/src/main/java/com/nckh/backend/controller/AuthController.java",
+      "backend/src/main/java/com/nckh/backend/model/User.java",
+      "backend/src/main/java/com/nckh/backend/model/Role.java"
+    ],
+    "blockers": [],
+    "notes": "Java Spring Boot đã được tạo thủ công thay vì tải từ start.spring.io do lỗi kết nối. Đã viết xong Login API hỗ trợ JWT."
+  },
+  "pending_tasks": [
+    {
+      "task": "Phase 05: Core API (Entities & Controllers)",
+      "priority": "high",
+      "notes": "Tiếp tục tạo backend Entity cho Topics và Articles, sau đó viết API CRUD."
+    }
+  ],
+  "recent_changes": [
+    {
+      "timestamp": "2026-02-28T11:30:00Z",
+      "type": "feature",
+      "description": "Đổi tech stack từ NodeJS sang Java Spring Boot + MS SQL Server. Đã cài xong bộ khung và JWT Auth."
+    }
+  ],
+  "decisions_made": [
+    {
+      "decision": "Manual Spring Boot Bootstrap",
+      "reason": "Kết nối tới start.spring.io qua curl bị chặn/lỗi, đã tự gõ pom.xml và Application class."
+    },
+    {
+      "decision": "Switch Tech Stack",
+      "reason": "Theo yêu cầu của User, chuyển sang dùng IntelliJ IDEA + SSMS."
+    }
+  ]
+}

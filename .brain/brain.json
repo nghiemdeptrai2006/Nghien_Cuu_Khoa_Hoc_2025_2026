@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "3.3.0"
+  },
+  "project": {
+    "name": "NCKH Backend",
+    "type": "Web Application (Fullstack)",
+    "status": "In Progress"
+  },
+  "tech_stack": {
+    "frontend": "HTML/CSS/JS (Vanilla)",
+    "backend": "Java 25, Spring Boot 3.4.3",
+    "database": "Microsoft SQL Server",
+    "security": "Spring Security + JWT (JSON Web Tokens)"
+  },
+  "database_schema": {
+    "summary": "App quản lý: Người dùng, Đề tài NCKH, Bài báo Khoa học.",
+    "tables": [
+      {
+        "name": "Roles",
+        "description": "Phân quyền hệ thống (Admin, GiangVien, SinhVien)"
+      },
+      {
+        "name": "Users",
+        "description": "Tài khoản đăng nhập, mật khẩu băm BCrypt, có liên kết tới Roles"
+      },
+      {
+        "name": "Topics",
+        "description": "Đề tài NCKH, gồm tên, trạng thái và tác giả (liên kết với Users)"
+      },
+      {
+        "name": "Articles",
+        "description": "Bài báo khoa học đã xuất bản, liên kết với tác giả (Users)"
+      }
+    ],
+    "relationships_explained": "1 Quyền có nhiều User. 1 User có thể đăng nhiều Đề Tài và Bài Báo."
+  },
+  "api_endpoints": [
+    {
+      "path": "POST /api/auth/login",
+      "explained": "Đăng nhập hệ thống (không cần token), truyền vào username/password, nhận JWT Token và vai trò."
+    }
+  ],
+  "features": [
+    "Authentication (Đăng nhập phân quyền Admin/GV/SV)",
+    "Topic Management (Đề tài NCKH) - Chuẩn bị code",
+    "Article Management (Bài báo) - Chuẩn bị code"
+  ]
+}

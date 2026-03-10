@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hỗ trợ sinh viên | Kho dữ liệu số</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/hotro.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html" class="active"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+      <h2>Hỗ trợ & Tài khoản sinh viên</h2>
+      <p>Quản lý thông tin – hỗ trợ kỹ thuật – giải đáp thắc mắc</p>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="support-container">
+      <!-- ===== THÔNG TIN CÁ NHÂN ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-user fa-2x"></i>
+        <h3>Thông tin cá nhân</h3>
+
+        <label>Họ và tên</label>
+        <input type="text" value="Nguyễn Văn B" />
+
+        <label>Mã sinh viên</label>
+        <input type="text" value="SV20231234" disabled />
+
+        <label>Email</label>
+        <input type="email" value="sinhvien@edu.vn" />
+
+        <div class="actions">
+          <button>Cập nhật thông tin</button>
+        </div>
+      </div>
+
+      <!-- ===== ĐỔI MẬT KHẨU ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-lock fa-2x"></i>
+        <h3>Đổi mật khẩu</h3>
+
+        <label>Mật khẩu hiện tại</label>
+        <input type="password" />
+
+        <label>Mật khẩu mới</label>
+        <input type="password" />
+
+        <label>Xác nhận mật khẩu</label>
+        <input type="password" />
+
+        <div class="actions">
+          <button>Đổi mật khẩu</button>
+        </div>
+      </div>
+
+      <!-- ===== HỖ TRỢ KỸ THUẬT ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-headset fa-2x"></i>
+        <h3>Hỗ trợ kỹ thuật</h3>
+
+        <label>Mô tả vấn đề</label>
+        <textarea rows="4" placeholder="Nhập nội dung cần hỗ trợ..."></textarea>
+
+        <div class="actions">
+          <button>Gửi yêu cầu</button>
+        </div>
+      </div>
+
+      <!-- ===== FAQ ===== -->
+      <div class="support-card">
+        <i class="fa-solid fa-circle-question fa-2x"></i>
+        <h3>Câu hỏi thường gặp</h3>
+
+        <p>📌 Làm sao để tải tài liệu?</p>
+        <p>📌 Vì sao không xem được luận văn?</p>
+        <p>📌 Quên mật khẩu thì làm thế nào?</p>
+
+        <div class="actions">
+          <button>Xem chi tiết</button>
+        </div>
+      </div>
+
+      <!-- ===== ĐĂNG XUẤT ===== -->
+      <div class="support-card logout">
+        <i class="fa-solid fa-right-from-bracket fa-2x"></i>
+        <h3>Đăng xuất</h3>
+        <p>Thoát khỏi hệ thống kho dữ liệu số</p>
+
+        <div class="actions">
+          <button class="logout-btn">Đăng xuất</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Khoa Đào tạo Quốc tế</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Phòng 000, Tòa nhà X</p>
+            <p><i class="fas fa-phone"></i> (024) 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> khoquocte@edu.vn</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Hệ thống Kho Học liệu Số - Khoa Đào tạo Quốc tế
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MODAL BẢNG FAQ ===== -->
+    <div id="faqModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="viewModalTitle">📌 Câu hỏi thường gặp</h3>
+          <button class="close-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #ccc;">
+              <strong>1. Làm sao để tải tài liệu?</strong><br>
+              <span style="color: #555; font-size: 14px;">Chỉ sinh viên thuộc ngành học tương ứng mới có quyền Tải tài liệu về. Nếu hệ thống báo không có quyền, vui lòng liên hệ Ban quản lý Khoa.</span>
+            </li>
+            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #ccc;">
+              <strong>2. Vì sao không xem được luận văn?</strong><br>
+              <span style="color: #555; font-size: 14px;">Luận văn thường có định dạng PDF nặng hoặc file bảo mật, thử tải trực tiếp về thiết bị thay vì xem trực tuyến trên trình duyệt.</span>
+            </li>
+            <li>
+              <strong>3. Quên mật khẩu thì làm thế nào?</strong><br>
+              <span style="color: #555; font-size: 14px;">Báo trực tiếp cho Cán bộ Hệ thống (SĐT: 024-xxxx-xxxx) hoặc sử dụng tính năng "Quên mật khẩu" từ màn hình Đăng nhập để Khôi phục.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer" style="text-align: right;">
+          <button class="btn-cancel" onclick="closeFaqModal()" style="padding: 10px 20px; border-radius: 6px; border: none; background: #6c757d; color: white; cursor: pointer;">Đóng lại</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../JS/hotro.js"></script>
+  </body>
+</html>

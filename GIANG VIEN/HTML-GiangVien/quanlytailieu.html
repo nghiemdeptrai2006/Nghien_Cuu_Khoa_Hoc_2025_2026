@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tài liệu giảng viên | Kho dữ liệu số</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/shared.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/quanlytailieu.css?v=2" />
+    <style>
+      .upload-area {
+        max-width: 800px;
+        margin: 1rem auto;
+        padding: 2rem;
+        background-color: #f9fafb;
+        border: 2px dashed #0b5ed7;
+        border-radius: 8px;
+        text-align: center;
+        display: none;
+      }
+      .upload-area.active { display: block; }
+      .upload-area input[type="file"] { display: none; }
+      .upload-area label {
+        display: inline-block; padding: 10px 20px;
+        background-color: #0b5ed7; color: #fff;
+        cursor: pointer; border-radius: 5px; font-weight: bold;
+        margin-top: 10px; transition: 0.3s;
+      }
+      .upload-area label:hover { background-color: #0a58ca; }
+      .upload-area button {
+        padding: 10px 20px; background-color: #198754;
+        color: #fff; border: none; border-radius: 5px;
+        cursor: pointer; margin-left: 10px; font-weight: bold; transition: 0.3s;
+      }
+      .upload-area button:hover { background-color: #157347; }
+    </style>
+  </head>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG-giangvien/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>CỔNG GIẢNG VIÊN</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="quanlytailieu.html" class="active"><i class="fas fa-book-open"></i> QL Tài liệu</a>
+          <a href="quanlygiaotrinh.html"><i class="fas fa-book"></i> QL Giáo trình</a>
+          <a href="quanlyluanvan.html"><i class="fas fa-graduation-cap"></i> QL Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span><i class="fas fa-user-circle"></i> Giảng viên</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+      <h2>Tài liệu dành cho Giảng viên</h2>
+      <p>
+        Quản lý – chia sẻ – cập nhật học liệu phục vụ giảng dạy và nghiên cứu
+      </p>
+    </section>
+
+    <!-- ===== TOOL BAR ===== -->
+    <section class="tool-bar">
+      <button onclick="toggleUploadArea()"><i class="fa-solid fa-upload"></i> Tải tài liệu</button>
+
+      <button><i class="fa-solid fa-folder-plus"></i> Tạo thư mục</button>
+
+      <button><i class="fa-solid fa-filter"></i> Lọc tài liệu</button>
+
+      <input type="text" placeholder="Tìm theo tên môn, học phần, từ khóa..." />
+    </section>
+
+    <!-- UPLOAD SECTION -->
+    <section class="upload-area" id="uploadArea">
+      <h3><i class="fas fa-cloud-upload-alt"></i> Tải lên tài liệu mới</h3>
+      <p>Hỗ trợ định dạng: <b>PDF, DOCX, PPTX</b> (Tối đa 50MB).</p>
+      <input type="file" id="fileUpload" accept=".pdf, .docx, .doc, .ppt, .pptx" />
+      <label for="fileUpload"><i class="fas fa-file-import"></i> Chọn File</label>
+      <button onclick="submitUpload()"><i class="fas fa-upload"></i> Xác nhận tải lên</button>
+      <p id="fileName" style="margin-top: 15px; font-weight: bold; color: #198754;"></p>
+    </section>
+
+    <!-- ===== DOCUMENT LIST ===== -->
+    <section class="document-list" id="documentList">
+        <!-- Render từ JS (quanlytailieu.js) -->
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Cổng Giảng Viên - Khoa ĐTQT</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Phòng 000, Tòa nhà X</p>
+            <p><i class="fas fa-phone"></i> (024) 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> giangvien@edu.vn</p>
+            <div class="social-icons">
+              <a href="#"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Hệ thống Kho Học liệu Số - Khoa Đào tạo Quốc tế
+        </div>
+      </div>
+    </footer>
+    <!-- ===== MODAL XEM CHI TIẾT TÀI LIỆU ===== -->
+    <div id="viewModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="viewModalTitle">Tên Tài Liệu</h3>
+          <button class="close-btn" onclick="closeViewModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <p id="viewModalSubject"><strong>Môn học:</strong> <span>...</span></p>
+          <p id="viewModalMeta"><strong>Định dạng:</strong> <span>...</span></p>
+          <div class="preview-box">
+            <i class="fas fa-file-alt fa-3x" style="color: #ccc; margin-bottom: 10px;"></i>
+            <p>Bản xem trước nội dung không khả dụng cho định dạng này.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-download" onclick="alert('Đang tải file xuống máy tính...')"><i class="fas fa-download"></i> Tải xuống</button>
+          <button class="btn-cancel" onclick="closeViewModal()">Đóng</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MODAL SỬA TÀI LIỆU ===== -->
+    <div id="editModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Chỉnh sửa Tài liệu</h3>
+          <button class="close-btn" onclick="closeEditModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tên tài liệu:</label>
+            <input type="text" id="editDocName" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Môn học:</label>
+            <input type="text" id="editDocSubject" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Cập nhật File mới (để trống nếu giữ nguyên):</label>
+            <input type="file" class="form-control" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-save" onclick="saveDocument()"><i class="fas fa-save"></i> Lưu thay đổi</button>
+          <button class="btn-cancel" onclick="closeEditModal()">Hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS-GiangVien/quanlytailieu.js"></script>
+    <script>
+      function toggleUploadArea() {
+         const area = document.getElementById('uploadArea');
+         area.classList.toggle('active');
+      }
+
+      const fileUpload = document.getElementById('fileUpload');
+      if(fileUpload){
+          fileUpload.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.getElementById('fileName').innerHTML = "<i class='fas fa-check-circle'></i> File đã chọn: " + this.files[0].name;
+            }
+          });
+      }
+
+      function submitUpload() {
+          const fileInput = document.getElementById('fileUpload');
+          if(fileInput.files.length === 0) {
+              alert("⚠️ Vui lòng chọn một file trước khi tải lên!");
+              return;
+          }
+          alert("✅ Tải lên tài liệu giảng dạy thành công vào hệ thống!");
+          fileInput.value = "";
+          document.getElementById('fileName').textContent = "";
+          toggleUploadArea();
+      }
+    </script>
+  </body>
+</html>

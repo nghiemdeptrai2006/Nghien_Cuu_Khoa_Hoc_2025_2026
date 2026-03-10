@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Hệ thống Quản trị NCKH</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlydetai.html">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Quản lý Đề tài</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaibao.html">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Bài báo Khoa học</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlysanpham.html">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Sản phẩm NCKH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Top Navbar -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Tổng quan Thống kê</h2>
+                <p>Cập nhật số liệu nghiên cứu khoa học toàn khoa.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm kiếm nhanh...">
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge">3</span>
+                    <!-- Dropdown Notif -->
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list">
+                            <div class="notif-item unread">
+                                <div class="notif-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                                <div class="notif-content">
+                                    <p>SV Nguyễn Văn A vừa nộp báo cáo NCKH</p>
+                                    <span>5 phút trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-check-double"></i></div>
+                                <div class="notif-content">
+                                    <p>Đề tài KT-2026-02 đã được duyệt</p>
+                                    <span>2 giờ trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="notif-content">
+                                    <p>Cảnh báo: Đề tài NN-2025 sắp hết hạn</p>
+                                    <span>1 ngày trước</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <!-- Dropdown Profile -->
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-folder-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1,254</h3>
+                        <p>Tổng Đề tài NCKH</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>12% tháng này</span>
+                    </div>
+                </div>
+
+                <div class="stat-card success">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>845</h3>
+                        <p>Bài báo đã công bố</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>8% tháng này</span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>3,210</h3>
+                        <p>Nhà nghiên cứu</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <span>5% tháng này</span>
+                    </div>
+                </div>
+
+                <div class="stat-card danger">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>15</h3>
+                        <p>Đề tài quá hạn</p>
+                    </div>
+                    <div class="stat-trend down">
+                        <i class="fa-solid fa-arrow-down"></i>
+                        <span>-2% tháng này</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Row 2 -->
+            <div class="dashboard-row">
+                <!-- Recent Activities -->
+                <div class="panel activities-panel">
+                    <div class="panel-header">
+                        <h3>Hoạt động Mới nhất</h3>
+                        <a href="#" class="view-all">Xem tất cả</a>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="activity-list">
+                            <li>
+                                <div class="activity-icon blue"><i class="fa-solid fa-upload"></i></div>
+                                <div class="activity-details">
+                                    <p><strong>TS. Lê Minh</strong> đã nộp báo cáo tiến độ đề tài <em>"Học máy phân tán"</em>.</p>
+                                    <span class="time">10 phút trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon green"><i class="fa-solid fa-check"></i></div>
+                                <div class="activity-details">
+                                    <p>Phê duyệt <strong>05 Bài báo khoa học</strong> đăng trên tạp chí IEEE.</p>
+                                    <span class="time">1 giờ trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon orange"><i class="fa-solid fa-user-plus"></i></div>
+                                <div class="activity-details">
+                                    <p>Thành viên mới: <strong>Trần Quốc Bảo</strong> tham gia hệ thống Hệ thống NCKH.</p>
+                                    <span class="time">3 giờ trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="activity-details">
+                                    <p>Cảnh báo: Đề tài mã <em>KT-2024-001</em> sắp đến hạn bảo vệ.</p>
+                                    <span class="time">Hôm qua, 14:00</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quick Actions / Mini Stats -->
+                <div class="panel quick-actions-panel">
+                    <div class="panel-header">
+                        <h3>Thống kê theo Lĩnh vực</h3>
+                        <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="chart-container">
+                            <!-- Placeholder for a chart, using simple CSS progress bars -->
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Công nghệ Thông tin</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-blue" style="width: 45%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Kinh tế - Tài chính</span>
+                                    <span>30%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-green" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Kỹ thuật - Cơ điện tử</span>
+                                    <span>15%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-orange" style="width: 15%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Khác</span>
+                                    <span>10%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-gray" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-links">
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm Đề tài</button>
+                            <button class="btn btn-outline"><i class="fa-solid fa-file-export"></i> Xuất Báo cáo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS/trangchu.js"></script>
+</body>
+</html>

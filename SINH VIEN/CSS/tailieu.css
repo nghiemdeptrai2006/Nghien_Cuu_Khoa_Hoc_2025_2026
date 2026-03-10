@@ -1,0 +1,180 @@
+/* ================= TÀI LIỆU CSS ================= */
+
+/* ================= BANNER ================= */
+.banner {
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+  animation: fadeSlide 1.2s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= SEARCH ================= */
+.search-area {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.search-area input {
+  width: 50%;
+  padding: 12px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.search-area input:focus {
+  outline: none;
+  border-color: var(--blue-light);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.35);
+}
+
+.search-area button {
+  padding: 12px 25px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-area button:hover {
+  background: var(--blue-dark);
+}
+
+/* ================= DOCUMENT LIST ================= */
+.document-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px;
+}
+
+.doc-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.35s;
+  cursor: pointer;
+}
+
+.doc-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(10, 79, 163, 0.25);
+}
+
+.doc-card h3 {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.doc-card button {
+  margin-top: 15px;
+  background: var(--blue-light);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.doc-card button:hover {
+  background: var(--blue-dark);
+  transform: scale(1.05);
+}
+
+
+
+/* ================= MODAL CSS ================= */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center; justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1; pointer-events: auto;
+}
+
+.modal-content {
+  background: white; width: 90%; max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-header {
+  background: var(--blue, #0b5ed7); color: white;
+  padding: 15px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.modal-header h3 { margin: 0; font-size: 18px; }
+
+.close-btn {
+  background: transparent; border: none; color: white;
+  font-size: 20px; cursor: pointer; transition: 0.2s;
+}
+.close-btn:hover { color: #ff4d4d; transform: rotate(90deg); }
+
+.modal-body { padding: 20px; color: #333; }
+.modal-body p { margin-bottom: 8px; }
+
+.preview-box {
+  background: #f8f9fa; border: 1px dashed #ced4da;
+  border-radius: 8px; padding: 30px; text-align: center;
+  margin-top: 15px; color: #6c757d;
+}
+
+.modal-footer {
+  padding: 15px 20px; background: #f1f3f5;
+  text-align: right; border-top: 1px solid #dee2e6;
+}
+
+.btn-download, .btn-cancel {
+  border: none; padding: 10px 15px; border-radius: 6px;
+  cursor: pointer; font-weight: bold; transition: 0.2s;
+}
+.btn-download {
+  background: var(--blue, #0b5ed7); color: white;
+}
+.btn-download:hover { background: var(--blue-dark, #0a58ca); }
+
+.btn-cancel {
+  background: #6c757d; color: white; margin-left: 10px;
+}
+.btn-cancel:hover { background: #495057; }
+
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .search-area input {
+    width: 70%;
+  }
+}

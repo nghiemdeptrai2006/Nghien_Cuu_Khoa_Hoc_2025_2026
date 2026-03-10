@@ -1,0 +1,37 @@
+[10:31] START phase-01-setup
+[10:31] DONE task: Create folder structure
+[10:31] DONE task: Manual package.json (Node.js missing)
+[10:31] DONE task: server.js and db.js
+[10:31] END phase-01-setup ?
+[10:33] START phase-02-database
+[10:33] DONE task: Create database.sql schema
+[10:33] DONE task: Add seed data (users, topics, roles)
+[10:33] END phase-02-database ?
+[10:36] START phase-03-backend-auth
+[10:36] DONE task: Create authController (JWT login)
+[10:36] DONE task: Create authMiddleware (verify token, roles)
+[10:36] DONE task: Implement authRoutes
+[10:36] DONE task: Update server.js
+[10:36] END phase-03-backend-auth ?
+[11:32] START phase-04-spring-security
+[11:32] DONE task: Configured Spring Security and JWT dependencies
+[11:32] DONE task: Created User, Role entities and UserDetailsServiceImpl
+[11:32] DONE task: Custom JwtTokenProvider and JwtAuthenticationFilter
+[11:32] DONE task: Implemented SecurityConfig with CORS
+[11:32] DONE task: AuthController login endpoint
+[11:32] END phase-04-spring-security ?
+[01:16] START phase-05-core-api
+[01:16] DONE task: Create Topic and Article Entities
+[01:16] DONE task: Create Repositories
+[01:16] DONE task: Create Services logic
+[01:16] DONE task: Create REST controllers
+[01:16] END phase-05-core-api ?
+[01:32] START phase-06-frontend-integration
+[01:32] DONE task: Create shared auth.js
+[01:32] DONE task: Integrate auth.js into Admin dashboard HTML/JS
+[01:32] DONE task: Implement API Fetch logic with Bearer Token
+[01:32] END phase-06-frontend-integration ?
+[01:36] START TEST-execution
+[01:36] ERROR: Missing JAVA_HOME and Maven Wrapper
+[01:36] DECISION: Skip automated tests for now because Spring Boot environment is incomplete
+[01:36] END TEST-execution ??

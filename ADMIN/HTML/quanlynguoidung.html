@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Người dùng | Hệ thống Quản trị NCKH</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlynguoidung.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlydetai.html">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Quản lý Đề tài</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaibao.html">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Bài báo Khoa học</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlysanpham.html">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Sản phẩm NCKH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Top Navbar -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Người dùng</h2>
+                <p>Hiển thị và phân quyền danh sách Giảng viên, Sinh viên, Cán bộ.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm kiếm nhanh...">
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge">3</span>
+                    <!-- Dropdown Notif -->
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list">
+                            <div class="notif-item unread">
+                                <div class="notif-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                                <div class="notif-content">
+                                    <p>SV Nguyễn Văn A vừa nộp báo cáo NCKH</p>
+                                    <span>5 phút trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-check-double"></i></div>
+                                <div class="notif-content">
+                                    <p>Đề tài KT-2026-02 đã được duyệt</p>
+                                    <span>2 giờ trước</span>
+                                </div>
+                            </div>
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="notif-content">
+                                    <p>Cảnh báo: Đề tài NN-2025 sắp hết hạn</p>
+                                    <span>1 ngày trước</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <!-- Dropdown Profile -->
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onclick="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard user-dashboard">
+            
+            <!-- TOOLBAR -->
+            <div class="user-toolbar">
+                <div class="toolbar-left">
+                    <button class="btn btn-primary" onclick="openUserModal('add')"><i class="fa-solid fa-user-plus"></i> Thêm Người dùng mới</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-file-import"></i> Nhập từ Excel</button>
+                </div>
+                <div class="toolbar-right">
+                    <select class="form-select filter-select">
+                        <option value="all">Tất cả vai trò</option>
+                        <option value="giangvien">Giảng viên / Nghiên cứu viên</option>
+                        <option value="sinhvien">Sinh viên / Học viên</option>
+                        <option value="admin">Quản trị viên</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- TABLE DATAS -->
+            <div class="table-container panel">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Họ và Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dòng 1 -->
+                        <tr>
+                            <td><strong>#GV001</strong></td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar"><img src="https://ui-avatars.com/api/?name=Nguyen+Van+A&background=e0e7ff&color=3730a3" alt="A"></div>
+                                    <div>
+                                        <strong>TS. Nguyễn Văn A</strong>
+                                        <span>Khoa Công nghệ Thông tin</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>nguyenvana@edu.vn</td>
+                            <td><span class="badge-role role-teacher">Giảng viên</span></td>
+                            <td><span class="status-indicator status-active">Hoạt động</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="Xem" onclick="viewUser('GV001')"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn-icon edit" title="Sửa" onclick="openUserModal('edit', 'GV001', 'TS. Nguyễn Văn A', 'nguyenvana@edu.vn', 'teacher')"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-icon lock" title="Khóa TK"><i class="fa-solid fa-lock"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Dòng 2 -->
+                        <tr>
+                            <td><strong>#SV092</strong></td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar"><img src="https://ui-avatars.com/api/?name=Tran+Thi+B&background=dcfce7&color=166534" alt="B"></div>
+                                    <div>
+                                        <strong>Trần Thị Bình</strong>
+                                        <span>Lớp KHTN 2021A</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>binhtt.sv@edu.vn</td>
+                            <td><span class="badge-role role-student">Sinh viên</span></td>
+                            <td><span class="status-indicator status-active">Hoạt động</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="Xem" onclick="viewUser('SV092')"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn-icon edit" title="Sửa" onclick="openUserModal('edit', 'SV092', 'Trần Thị Bình', 'binhtt.sv@edu.vn', 'student')"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-icon lock" title="Khóa TK"><i class="fa-solid fa-lock"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Dòng 3 -->
+                        <tr>
+                            <td><strong>#GV089</strong></td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar"><img src="https://ui-avatars.com/api/?name=Le+Huu+C&background=fee2e2&color=991b1b" alt="C"></div>
+                                    <div>
+                                        <strong>ThS. Lê Hữu C</strong>
+                                        <span>Khoa Kinh Tế</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>lehuuc@edu.vn</td>
+                            <td><span class="badge-role role-teacher">Giảng viên</span></td>
+                            <td><span class="status-indicator status-locked">Đã khóa</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="Xem"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="btn-icon edit" title="Sửa"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-icon unlock" title="Mở khóa"><i class="fa-solid fa-unlock"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn disabled"><i class="fa-solid fa-chevron-left"></i> Trước</button>
+                    <div class="page-numbers">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span>...</span>
+                        <button class="page-btn">12</button>
+                    </div>
+                    <button class="page-btn">Sau <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- ===== MODAL THÊM / SỬA NGƯỜI DÙNG ===== -->
+    <div id="userModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="userModalTitle">Thêm Người dùng mới</h3>
+          <button class="close-btn" onclick="closeUserModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+              <div class="form-row">
+                  <div class="form-group half">
+                    <label>Họ và Tên (*):</label>
+                    <input type="text" id="userName" class="form-control" placeholder="Nhập họ tên đầy đủ" required />
+                  </div>
+                  <div class="form-group half">
+                    <label>Mã ĐD (Mã SV / Mã GV):</label>
+                    <input type="text" id="userId" class="form-control" placeholder="VD: SV001" />
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>Email (*):</label>
+                <input type="email" id="userEmail" class="form-control" placeholder="name@edu.vn" required />
+              </div>
+              <div class="form-row">
+                  <div class="form-group half">
+                    <label>Vai trò hệ thống:</label>
+                    <select id="userRole" class="form-control">
+                        <option value="student">Sinh viên</option>
+                        <option value="teacher">Giảng viên/Phòng ban</option>
+                        <option value="admin">Quản trị viên</option>
+                    </select>
+                  </div>
+                  <div class="form-group half">
+                    <label>Mật khẩu khởi tạo:</label>
+                    <input type="password" id="userPassword" class="form-control" placeholder="Để trống = Mặc định (123456)" />
+                  </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="saveUser()"><i class="fas fa-save"></i> Lưu dữ liệu</button>
+          <button class="btn btn-outline" onclick="closeUserModal()" style="margin-left: 10px;">Hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../../shared/js/auth.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlynguoidung.js"></script>
+</body>
+</html>

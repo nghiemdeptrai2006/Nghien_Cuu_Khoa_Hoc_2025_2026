@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chi tiết Luận văn | Khoa Đào tạo Quốc tế</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/luanvan.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html" class="active"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container" style="margin-top: 40px; margin-bottom: 40px; min-height: 50vh;">
+      <a href="luanvan.html" class="btn-primary" style="margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Quay lại</a>
+      <div style="background: white; padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow-sm);">
+        <h2 id="thesisTitle" style="color: var(--primary-color); margin-bottom: 15px;"></h2>
+        <p id="thesisInfo" style="font-size: 1.1rem; color: #555; margin-bottom: 30px;"></p>
+        
+        <div style="padding: 20px; background: var(--bg-color); border-left: 4px solid var(--primary-color); border-radius: 4px;">
+          <h3 style="margin-bottom: 10px;">Tóm tắt nội dung:</h3>
+          <p>Đang cập nhật nội dung chi tiết...</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Khoa Đào tạo Quốc tế</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Phòng 000, Tòa nhà X</p>
+            <p><i class="fas fa-phone"></i> (024) 1234 5678</p>
+            <p><i class="fas fa-envelope"></i> khoquocte@edu.vn</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          © 2025 Hệ thống Kho Học liệu Số - Khoa Đào tạo Quốc tế
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      // Demo dữ liệu
+      const theses = {
+        101: {
+          title: "Xây dựng kho dữ liệu số cho Khoa ĐTQT",
+          author: "Nguyễn Văn A",
+          branch: "CNTT",
+          year: 2025
+        },
+        102: {
+            title: "Ứng dụng AI trong quản lý thư viện",
+            author: "Trần Thị B",
+            branch: "Kỹ thuật",
+            year: 2024
+        },
+        103: {
+            title: "Chuyển đổi số trong giáo dục đại học",
+            author: "Lê Văn C",
+            branch: "Kinh tế",
+            year: 2023
+        }
+      };
+
+      if (theses[id]) {
+        document.getElementById("thesisTitle").innerText = theses[id].title;
+        document.getElementById("thesisInfo").innerText =
+          "Sinh viên: " + theses[id].author + " | Ngành: " + theses[id].branch + " | Năm: " + theses[id].year;
+      }
+    </script>
+  </body>
+</html>
