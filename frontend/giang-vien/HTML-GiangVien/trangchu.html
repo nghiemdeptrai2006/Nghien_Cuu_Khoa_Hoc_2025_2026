@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trang giảng viên | Khoa Đào tạo Quốc tế</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/shared_v59.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/trangchugiangvien_v59.css" />
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <script>console.log("%c >>> AWF V6.0 PREMIUM HOME LOADED <<< ", "background: #10B981; color: white; font-weight: bold; padding: 4px;");</script>
+  </head>
+  <body>
+    <!-- VERSION BADGE FOR DEBUGGING -->
+    <div style="position: fixed; bottom: 10px; left: 10px; background: #10B981; color: white; padding: 5px 10px; border-radius: 5px; font-size: 10px; z-index: 9999; font-weight: bold; opacity: 0.7;">AWF V6.0 - PREMIUM EMERALD</div>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG-GiangVien/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>CỔNG GIẢNG VIÊN</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html" class="active"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="quanlytailieu.html"><i class="fas fa-book-open"></i> QL Tài liệu</a>
+          <a href="quanlygiaotrinh.html"><i class="fas fa-book"></i> QL Giáo trình</a>
+          <a href="quanlyluanvan.html"><i class="fas fa-graduation-cap"></i> QL Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          
+          <div class="user-profile-menu">
+            <div class="notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge" id="notif-badge">0</span>
+              <div class="notif-dropdown">
+                  <div class="notif-header">
+                      <h4>Thông báo mới</h4>
+                      <a href="#" id="mark-all-read">Đọc tất cả</a>
+                  </div>
+                  <div class="notif-list" id="notif-list">
+                      <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                  </div>
+                  <div class="notif-footer">
+                      <a href="#">Xem tất cả</a>
+                  </div>
+              </div>
+            </div>
+            <span>Giảng viên</span>
+            <button class="btn-logout logout-link"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Xin chào, <span>Giảng viên 👋</span></h2>
+        <p>Hệ thống quản lý học liệu – giáo trình – luận văn tối ưu cho khoa Đào tạo Quốc tế</p>
+      </div>
+    </section>
+
+    <!-- DASHBOARD FEATURES -->
+    <section class="features">
+      <div class="feature-card" onclick="window.location.href='quanlytailieu.html'">
+        <div class="icon-box"><i class="fas fa-book-open"></i></div>
+        <h3>Quản lý tài liệu</h3>
+        <p>Cập nhật bài giảng, slide và các tài nguyên học tập mới nhất cho sinh viên.</p>
+        <span class="btn-access">Truy cập</span>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='quanlygiaotrinh.html'">
+        <div class="icon-box"><i class="fas fa-book"></i></div>
+        <h3>Giáo trình</h3>
+        <p>Biên soạn và quản lý kho giáo trình điện tử chính thức của các học phần.</p>
+        <span class="btn-access">Truy cập</span>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='quanlyluanvan.html'">
+        <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Luận văn</h3>
+        <p>Hướng dẫn, theo dõi và đánh giá các đề tài luận văn, báo cáo tốt nghiệp.</p>
+        <span class="btn-access">Truy cập</span>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='hotro.html'">
+        <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+        <h3>Hồ sơ giảng viên</h3>
+        <p>Xem và chỉnh sửa thông tin cá nhân, thay đổi mật khẩu tài khoản.</p>
+        <span class="btn-access">Xem hồ sơ</span>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='hotro.html'">
+        <div class="icon-box"><i class="fas fa-headset"></i></div>
+        <h3>Hỗ trợ kỹ thuật</h3>
+        <p>Gửi yêu cầu hỗ trợ nếu gặp khó khăn trong quá trình sử dụng hệ thống.</p>
+        <span class="btn-access">Liên hệ</span>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS-GiangVien/trangchugiangvien.js"></script>
+    <script src="../JS-GiangVien/support.js"></script>
+  </body>
+</html>

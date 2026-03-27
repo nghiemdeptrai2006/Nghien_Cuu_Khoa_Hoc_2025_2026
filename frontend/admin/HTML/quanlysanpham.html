@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm NCKH & Sáng chế | Hệ thống Quản trị</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlynguoidung.css">
+    <link rel="stylesheet" href="../CSS/quanlysanpham.css">
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlydetai.html">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Quản lý Đề tài</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaibao.html">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Bài báo Khoa học</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlysanpham.html">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Sản phẩm NCKH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Sản phẩm Khoa học</h2>
+                <p>Lưu trữ và chứng nhận Bằng Sáng chế, Giải pháp hữu ích, Sách, Giáo trình.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh..." autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notif-badge">0</span>
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard product-dashboard">
+            
+            <div class="user-toolbar">
+                <div class="toolbar-left">
+                    <button class="btn btn-primary" onclick="openProductModal()"><i class="fa-solid fa-upload"></i> Khai báo Sản phẩm mới</button>
+                    <button class="btn btn-outline" onclick="printCert()"><i class="fa-solid fa-certificate"></i> In Phôi Chứng Nhận</button>
+                </div>
+                <div class="toolbar-right">
+                    <select class="form-select filter-select">
+                        <option value="all">Tất cả Phân loại</option>
+                        <option value="patent">Bằng Sáng chế</option>
+                        <option value="solution">Giải pháp Hữu ích</option>
+                        <option value="book">Sách / Giáo trình / Chuyên khảo</option>
+                        <option value="software">Phần mềm / PM Nguồn mở</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                <p style="color: var(--text-muted);"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu sản phẩm khoa học...</p>
+            </div>
+
+             <div class="pagination" style="margin-top: 30px;">
+                <button class="page-btn disabled"><i class="fa-solid fa-chevron-left"></i> Trước</button>
+                <div class="page-numbers">
+                    <button class="page-btn active">1</button>
+                </div>
+                <button class="page-btn disabled">Sau <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 700px;">
+          <div class="modal-header">
+            <h3>Đăng ký Sản Phẩm NCKH mới</h3>
+            <button class="close-btn" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <form id="productForm">
+                <div class="form-group">
+                  <label>Tên Sản Phẩm (Bằng Sáng Chế / Sách / Phần mềm) (*):</label>
+                  <input type="text" class="form-control" placeholder="Tên sản phẩm..." required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                      <label>Phân loại Sản phẩm (*):</label>
+                      <select class="form-control">
+                          <option>Bằng Sáng Chế (Patents)</option>
+                          <option>Giải pháp hữu ích</option>
+                          <option>Sách Chuyên Khảo</option>
+                          <option>Sách Giáo trình / Tham khảo</option>
+                          <option>Sản phẩm Phần mềm / Ứng dụng</option>
+                          <option>Khác (Mô hình, Vật liệu...)</option>
+                      </select>
+                    </div>
+                    <div class="form-group half">
+                      <label>Chủ sở hữu / Tác giả chính:</label>
+                      <input type="text" class="form-control" placeholder="Tên Cán bộ / Đơn vị" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                      <label>Số Hiệu / ISBN / Giấy tiếp nhận (*):</label>
+                      <input type="text" class="form-control" placeholder="Nhập số seri..." required/>
+                    </div>
+                    <div class="form-group half">
+                      <label>Ngày cấp / Xuất bản:</label>
+                      <input type="date" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Trạng thái Hồ sơ:</label>
+                    <div style="display: flex; gap: 20px; align-items: center; margin-top: 8px;">
+                        <label style="font-weight: normal; cursor: pointer;"><input type="radio" name="prdState" value="done" checked> Đã được cấp chứng nhận/Xuất bản</label>
+                        <label style="font-weight: normal; cursor: pointer;"><input type="radio" name="prdState" value="pending"> Đang chờ xử lý (Chưa có QĐ)</label>
+                    </div>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" onclick="addProductAction()"><i class="fas fa-save"></i> Lưu Dữ liệu</button>
+            <button class="btn btn-outline" onclick="closeProductModal()" style="margin-left: 10px;">Hủy bỏ</button>
+          </div>
+        </div>
+      </div>
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlysanpham.js"></script>
+</body>
+</html>

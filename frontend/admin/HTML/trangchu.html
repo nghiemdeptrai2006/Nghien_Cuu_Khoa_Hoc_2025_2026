@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Hệ thống Quản trị NCKH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlygiaotrinh.html">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Quản lý Giáo trình</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyluanvan.html">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Quản lý Luận văn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyhotro.html">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Quản lý Hỗ trợ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlychat.html">
+                        <i class="fa-solid fa-message"></i>
+                        <span>Quản lý Chat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Tổng quan Thống kê</h2>
+                <p>Cập nhật số liệu nghiên cứu khoa học toàn khoa.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh..." autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notif-badge">0</span>
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Không có thông báo nào</div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card primary" onclick="window.location.href='quanlytailieu.html'" style="cursor: pointer;" id="card-docs">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Tổng số Tài liệu</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Sẵn dùng</span>
+                    </div>
+                </div>
+
+                <div class="stat-card success" onclick="window.location.href='quanlygiaotrinh.html'" style="cursor: pointer;" id="card-textbooks">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Giáo trình số</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Đã kiểm duyệt</span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning" onclick="window.location.href='quanlyluanvan.html'" style="cursor: pointer;" id="card-thesis">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Luận văn & Đồ án</p>
+                    </div>
+                    <div class="stat-trend up">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Toàn văn</span>
+                    </div>
+                </div>
+
+                <div class="stat-card danger" onclick="window.location.href='quanlyhotro.html'" style="cursor: pointer;" id="card-support">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Hỗ trợ cần xử lý</p>
+                    </div>
+                    <div class="stat-trend urgent">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Ưu tiên cao</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="dashboard-row">
+                <div class="panel activities-panel">
+                    <div class="panel-header">
+                        <h3>Hoạt động Mới nhất</h3>
+                        <a href="#" class="view-all">Xem tất cả</a>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="activity-list" style="min-height: 200px;">
+                            <li style="justify-content: center; color: var(--text-muted); padding: 40px 0;">
+                                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 10px;"></i> Đang tải dữ liệu hoạt động...
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel quick-actions-panel">
+                    <div class="panel-header">
+                        <h3>Thống kê theo Chuyên ngành</h3>
+                        <button class="icon-btn" onclick="window.location.href='quanlybaocao.html'"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="chart-container">
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Công nghệ Thông tin</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-blue" style="width: 45%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Kinh tế - Tài chính</span>
+                                    <span>30%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-green" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Kỹ thuật - Cơ điện tử</span>
+                                    <span>15%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-orange" style="width: 15%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span>Khác</span>
+                                    <span>10%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar fill-gray" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-links">
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm Đề tài</button>
+                            <button class="btn btn-outline"><i class="fa-solid fa-file-export"></i> Xuất Báo cáo</button>
+                            <button class="btn btn-warning" id="btn-global-notif"><i class="fa-solid fa-bullhorn"></i> Thông báo Toàn hệ thống</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Gửi Thông Báo Toàn Hệ Thống -->
+    <div id="globalNotifModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-bullhorn"></i> Gửi Thông Báo Toàn Hệ Thống</h3>
+                <button class="close-btn close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="globalNotifForm">
+                    <div class="form-group">
+                        <label for="notifTitle">Tiêu đề thông báo</label>
+                        <input type="text" id="notifTitle" class="form-control" placeholder="VD: Bảo trì hệ thống, Thông báo quan trọng..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notifMessage">Nội dung chi tiết</label>
+                        <textarea id="notifMessage" class="form-control" rows="4" placeholder="Nhập nội dung thông báo tại đây..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="notifType">Loại thông báo</label>
+                            <select id="notifType" class="form-control">
+                                <option value="GENERAL">Thông thường</option>
+                                <option value="IMPORTANT">Quan trọng / Khẩn cấp</option>
+                                <option value="SYSTEM">Hệ thống</option>
+                            </select>
+                        </div>
+                        <div class="form-group half">
+                            <label for="notifLink">Đường dẫn (không bắt buộc)</label>
+                            <input type="text" id="notifLink" class="form-control" placeholder="VD: quanlydetai.html">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-modal-btn">Hủy bỏ</button>
+                        <button type="submit" class="btn btn-primary">Gửi Thông Báo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+</body>
+</html>

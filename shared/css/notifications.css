@@ -1,0 +1,173 @@
+/* Shared Notification Styles for Kho Dữ Liệu Số */
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.3s;
+    user-select: none;
+    box-sizing: border-box !important;
+}
+
+.notifications:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.notifications .badge {
+    position: absolute !important;
+    top: 0px !important;
+    right: 0px !important;
+    background: #ff4d4d !important;
+    color: white !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+    min-width: 16px !important;
+    height: 16px !important;
+    line-height: 12px !important;
+    text-align: center !important;
+    display: none; /* JS will toggle this */
+    border: 2px solid white !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-sizing: border-box !important;
+    z-index: 10;
+}
+
+/* Dropdown styling */
+.notif-dropdown {
+    position: absolute !important;
+    top: 45px !important;
+    right: 0 !important;
+    width: 320px !important;
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2) !important;
+    display: none;
+    flex-direction: column !important;
+    z-index: 99999 !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    animation: scaleIn 0.2s ease-out;
+    transform-origin: top right;
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95) translateY(-5px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.notifications.active .notif-dropdown {
+    display: flex !important;
+}
+
+.notif-header {
+    padding: 15px !important;
+    border-bottom: 1px solid #eee !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: #f8f9fa !important;
+}
+
+.notif-header h4 {
+    margin: 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #333 !important;
+}
+
+.notif-header a {
+    font-size: 0.8rem !important;
+    color: #1a237e !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+}
+
+.notif-list {
+    max-height: 350px !important;
+    overflow-y: auto !important;
+    background: white !important;
+}
+
+.notif-item {
+    display: flex !important;
+    padding: 12px 15px !important;
+    border-bottom: 1px solid #f1f1f1 !important;
+    transition: background 0.2s !important;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.notif-item:hover {
+    background: #f9f9f9 !important;
+}
+
+.notif-item.unread {
+    background: #f0f4ff !important;
+}
+
+.notif-icon {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: #e8eaf6 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 12px !important;
+    flex-shrink: 0 !important;
+    color: #1a237e !important;
+    font-size: 1.1rem !important;
+}
+
+.notif-content {
+    flex: 1 !important;
+}
+
+.notif-content p {
+    margin: 0 0 4px 0 !important;
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: #444 !important;
+}
+
+.notif-content span {
+    font-size: 0.75rem !important;
+    color: #888 !important;
+    display: block !important;
+}
+
+.notif-footer {
+    padding: 12px !important;
+    text-align: center !important;
+    border-top: 1px solid #eee !important;
+    background: #fff !important;
+}
+
+.notif-footer a {
+    font-size: 0.85rem !important;
+    color: #1a237e !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+
+/* Empty State */
+.notif-empty {
+    padding: 40px 20px !important;
+    text-align: center !important;
+    color: #999 !important;
+    font-size: 0.9rem !important;
+}
+
+.notif-empty i {
+    font-size: 2.5rem !important;
+    margin-bottom: 12px !important;
+    display: block !important;
+    opacity: 0.3 !important;
+}

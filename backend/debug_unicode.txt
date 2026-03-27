@@ -1,0 +1,5 @@
+
+--- Sun Mar 22 02:32:23 GMT+07:00 2026 ---
+Subject: Yêu cầu hỗ trợ sinh viên
+Char 0: Y (U+0059) | Char 1: ê (U+00EA) | Char 2: u (U+0075) | Char 3:   (U+0020) | Char 4: c (U+0063) | Char 5: ầ (U+1EA7) | Char 6: u (U+0075) | Char 7:   (U+0020) | Char 8: h (U+0068) | Char 9: ỗ (U+1ED7) | Char 10:   (U+0020) | Char 11: t (U+0074) | Char 12: r (U+0072) | Char 13: ợ (U+1EE3) | Char 14:   (U+0020) | Char 15: s (U+0073) | Char 16: i (U+0069) | Char 17: n (U+006E) | Char 18: h (U+0068) | Char 19:   (U+0020) | Char 20: v (U+0076) | Char 21: i (U+0069) | Char 22: ê (U+00EA) | Char 23: n (U+006E) | 
+Details: aaaaaaaaaaaaaaaaaaaaaaaaa

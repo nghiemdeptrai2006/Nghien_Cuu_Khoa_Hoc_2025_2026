@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "4.0.2",
+    "last_updated": "2026-03-11T14:00:00+07:00"
+  },
+  "project": {
+    "name": "Nghiên Cứu Khoa Học 2025-2026 (QL-NCKH)",
+    "type": "Full-stack Web App (Vanilla HTML/CSS/JS + Spring Boot)",
+    "status": "In Development",
+    "root_path": "c:/Users/ADMIN/Downloads/Nghien_Cuu_Khoa_Hoc_2025_2026-main",
+    "description": "Hệ thống quản lý nghiên cứu khoa học cho trường đại học, gồm 3 role: Admin, Giảng viên, Sinh viên"
+  },
+  "tech_stack": {
+    "frontend": {
+      "type": "Vanilla HTML/CSS/JS (Multi-page)",
+      "auth_library": "Google Sign-In SDK (GSI)",
+      "icon_library": "Font Awesome 6.4.0",
+      "hosted_on": "Live Server (VSCode) - http://127.0.0.1:5500"
+    },
+    "backend": {
+      "framework": "Spring Boot 3.2.4 (Java)",
+      "port": 8080,
+      "security": "Spring Security + JWT",
+      "orm": "Hibernate / Spring Data JPA",
+      "build_tool": "Maven",
+      "run_command": "backend/run.bat"
+    },
+    "database": {
+      "type": "Microsoft SQL Server",
+      "port": 1433,
+      "name": "NCKH_DB",
+      "auth": "SQL Server Authentication (sa / 123)",
+      "ddl_auto": "none (set to 'update' temporarily to create new tables)"
+    },
+    "email": {
+      "provider": "Spring Boot Starter Mail (JavaMail)",
+      "smtp_host": "smtp.gmail.com",
+      "port": 587,
+      "auth_type": "App Password (16-digit)",
+      "override_receiver": true,
+      "test_receiver": "nguyentrongnghiem2006@gmail.com",
+      "legacy_provider": "EmailJS (Frontend - used for lecturer document uploads)"
+    }
+  },
+  "authentication": {
+    "token_storage_key": "localStorage['token']",
+    "token_format": "JWT (Bearer)",
+    "login_endpoint": "POST /api/auth/login",
+    "google_login_endpoint": "POST /api/auth/google",
+    "google_login_logic": "Frontend verify với Google SDK → gửi email+name+userType lên backend → backend trả JWT thật. Nếu email không có trong DB và userType='student' → fallback dùng account SV01",
+    "roles": ["ROLE_ADMIN", "ROLE_GIANGVIEN", "ROLE_SINHVIEN"],
+    "default_passwords": "admin/123456, GV01/123456, SV01/123456 (reset mỗi lần khởi động)"
+  },
+  "database_schema": {
+    "summary": "Hệ thống lưu: user accounts, tài liệu học thuật, đề tài NCKH, bài báo khoa học, sản phẩm NCKH",
+    "existing_tables": [
+      {
+        "name": "users",
+        "columns": ["id (INT PK)", "username", "passwordHash", "fullName", "role_id", "created_at"],
+        "note": "username dùng để match với Google email"
+      },
+      {
+        "name": "roles",
+        "columns": ["id (INT PK)", "roleName"],
+        "values": ["ROLE_ADMIN", "ROLE_GIANGVIEN", "ROLE_SINHVIEN"]
+      },
+      {
+        "name": "documents",
+        "columns": ["id", "title", "major", "publishYear", "fileUrl", "coverUrl", "doc_type", "uploader_id", "createdAt"],
+        "doc_types": ["TAI_LIEU", "GIAO_TRINH", "LUAN_VAN"]
+      }
+    ],
+    "new_tables_added": [
+      {
+        "name": "ResearchTopics",
+        "purpose": "Quản lý Đề tài NCKH",
+        "key_columns": ["topicCode", "title", "leaderId (FK users)", "fieldArea", "level", "budget", "startDate", "endDate", "status", "progress"],
+        "status_values": ["PENDING", "ACTIVE", "DELAYED", "COMPLETED", "CANCELLED"]
+      },
+      {
+        "name": "ScientificPapers",
+        "purpose": "Bài báo Khoa học",
+        "key_columns": ["paperCode", "title", "leadAuthorId", "coAuthors", "journalType", "journalName", "publishedAt", "status", "reviewNote"],
+        "journal_types": ["ISI_SCOPUS", "INTERNATIONAL", "DOMESTIC", "CONFERENCE"],
+        "status_values": ["PENDING", "APPROVED", "REVISION", "REJECTED"]
+      },
+      {
+        "name": "ResearchProducts",
+        "purpose": "Sản phẩm NCKH (Bằng sáng chế, Sách, Phần mềm...)",
+        "key_columns": ["productName", "productType", "ownerId", "serialNumber", "issuedAt", "publisher", "status"],
+        "product_types": ["PATENT", "SOLUTION", "BOOK_REFERENCE", "BOOK_TEXTBOOK", "SOFTWARE", "OTHER"]
+      }
+    ]
+  },
+  "api_endpoints": [
+    {
+      "path": "/api/auth/login",
+      "method": "POST",
+      "auth": "Public",
+      "explained": "Đăng nhập thường - gửi username+password, nhận JWT"
+    },
+    {
+      "path": "/api/auth/google",
+      "method": "POST",
+      "auth": "Public",
+      "body": "{ email, name, userType }",
+      "explained": "Đăng nhập Google - backend tìm user theo email, nếu là student và không có thì fallback SV01"
+    },
+    {
+      "path": "/api/documents",
+      "method": "GET",
+      "auth": "JWT Required",
+      "params": "?type=TAI_LIEU|GIAO_TRINH|LUAN_VAN&keyword=...",
+      "explained": "Lấy danh sách tài liệu, có thể lọc theo loại hoặc từ khóa"
+    },
+    {
+      "path": "/api/documents/files/{filename}",
+      "method": "GET",
+      "auth": "Public",
+      "explained": "Truy cập file PDF/ảnh tĩnh - không cần JWT"
+    },
+    {
+      "path": "/api/admin/topics",
+      "method": "GET|POST",
+      "auth": "JWT Required",
+      "explained": "CRUD đề tài NCKH. GET có lọc ?status=PENDING|ACTIVE|DELAYED|COMPLETED"
+    },
+    {
+      "path": "/api/admin/topics/{id}/status",
+      "method": "PUT",
+      "auth": "JWT Required",
+      "body": "{ status, progress }",
+      "explained": "Cập nhật trạng thái đề tài (duyệt/hủy)"
+    },
+    {
+      "path": "/api/admin/topics/stats",
+      "method": "GET",
+      "auth": "JWT Required",
+      "explained": "Thống kê đề tài cho dashboard: total, pending, active, delayed, completed"
+    },
+    {
+      "path": "/api/admin/papers",
+      "method": "GET|POST",
+      "auth": "JWT Required",
+      "explained": "CRUD bài báo khoa học. GET có lọc ?journalType=ISI_SCOPUS|DOMESTIC|CONFERENCE"
+    },
+    {
+      "path": "/api/admin/papers/{id}/review",
+      "method": "PUT",
+      "body": "{ status, reviewNote }",
+      "auth": "JWT Required",
+      "explained": "Duyệt / từ chối / yêu cầu sửa bài báo"
+    },
+    {
+      "path": "/api/admin/papers/stats",
+      "method": "GET",
+      "auth": "JWT Required",
+      "explained": "Thống kê bài báo: total, approved, pending, revision"
+    },
+    {
+      "path": "/api/admin/products",
+      "method": "GET|POST",
+      "auth": "JWT Required",
+      "explained": "CRUD sản phẩm NCKH. GET có lọc ?productType=PATENT|SOFTWARE|BOOK_REFERENCE"
+    },
+    {
+      "path": "/api/admin/products/{id}",
+      "method": "PUT",
+      "auth": "JWT Required",
+      "body": "{ status: 'CERTIFIED' }",
+      "explained": "Cấp chứng nhận cho sản phẩm NCKH"
+    },
+    {
+      "path": "/api/users",
+      "method": "GET",
+      "auth": "JWT Required",
+      "explained": "Lấy danh sách users (dùng cho dashboard admin)"
+    },
+    {
+      "path": "/api/user/profile",
+      "method": "GET|PUT",
+      "auth": "JWT Required",
+      "explained": "Xem / cập nhật thông tin hồ sơ cá nhân"
+    },
+    {
+      "path": "/api/auth/test-mail",
+      "method": "GET",
+      "auth": "Public (Whitelisted)",
+      "params": "?to=email@example.com",
+      "explained": "Endpoint test gửi mail thủ công để debug SMTP connection"
+    },
+    {
+      "path": "/api/auth/verify-otp",
+      "method": "POST",
+      "auth": "Public",
+      "body": "{ username, otp }",
+      "explained": "Xác thực mã OTP 6 số để nhận JWT chính thức"
+    }
+  ],
+  "frontend_structure": {
+    "login_page": "Dangnhap_wedIned/index.html + script.js",
+    "admin_pages": "ADMIN/HTML/*.html + ADMIN/JS/*.js",
+    "student_pages": "SINH VIEN/HTML/*.html + SINH VIEN/JS/*.js",
+    "lecturer_pages": "GIANG VIEN/HTML/*.html + GIANG VIEN/JS-GiangVien/*.js",
+    "shared": "shared/js/auth.js (getToken, displayUserInfo, logout, fetchTopics)"
+  },
+  "known_issues": [
+    {
+      "issue": "UTF-8 encoding - tên tiếng Việt hiển thị sai",
+      "status": "Not fixed",
+      "example": "'sinh viên a' bị lỗi ký tự"
+    },
+    {
+      "issue": "Admin trang quanlynguoidung.html chưa kết nối API thật",
+      "status": "JS mới viết chỉ dùng alert()",
+      "note": "Cần tạo API GET /api/users trả danh sách đầy đủ"
+    }
+  ]
+}

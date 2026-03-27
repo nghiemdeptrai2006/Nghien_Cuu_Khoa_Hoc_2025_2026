@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Học liệu mở | Khoa ĐTQT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/tailieu.css" />
+    <style>
+      .upload-area {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #f9fafb;
+        border: 2px dashed #9ca3af;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .upload-area input[type="file"] {
+        display: none;
+      }
+      .upload-area label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0b5ed7;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+      .upload-area label:hover {
+        background-color: #0a58ca;
+      }
+      .upload-area button {
+        padding: 10px 20px;
+        background-color: #198754;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+      .upload-area button:hover {
+        background-color: #157347;
+      }
+      .upload-area p {
+        color: #4b5563;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <span id="user-name-display"><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner">
+      <h2>🌐 Học liệu mở</h2>
+      <p>Không gian lưu trữ, chia sẻ và tham khảo tài nguyên học thuật miễn phí, không giới hạn ngành học.</p>
+    </section>
+
+    <!-- UPLOAD SECTION -->
+    <section class="upload-area">
+      <h3><i class="fas fa-cloud-upload-alt"></i> Đóng góp học liệu mở</h3>
+      <p>Hỗ trợ định dạng: <b>PDF, DOCX, PPTX</b> (Tối đa 50MB).</p>
+      <p><i>*Tài liệu tải lên sẽ được ban quản trị xét duyệt trước khi hiển thị để mọi người tải về.</i></p>
+      <input type="file" id="fileUpload" accept=".pdf, .docx, .doc, .ppt, .pptx" />
+      <label for="fileUpload"><i class="fas fa-file-import"></i> Chọn File</label>
+      <button onclick="handleUpload()"><i class="fas fa-upload"></i> Tải lên ngay</button>
+      <p id="fileName" style="margin-top: 15px; font-weight: bold; color: #198754;"></p>
+    </section>
+
+    <!-- SEARCH RESOURCES -->
+    <section class="search-area">
+      <input type="text" placeholder="Tìm kiếm chứng chỉ, Ngoại ngữ, Kỹ năng mềm..." />
+      <button>Tìm kiếm</button>
+    </section>
+
+    <!-- OPEN RESOURCES LIST -->
+    <section class="document-list">
+      <div class="doc-card">
+        <i class="fas fa-file-pdf fa-3x" style="color: #ea4335; margin-bottom: 15px;"></i>
+        <h3>Tài liệu Luyện thi TOEIC 600+</h3>
+        <p>Đóng góp: Câu lạc bộ Tiếng Anh</p>
+        <button data-file="toeic-600.pdf">Tải về</button>
+      </div>
+
+      <div class="doc-card">
+        <i class="fas fa-file-word fa-3x" style="color: #2b579a; margin-bottom: 15px;"></i>
+        <h3>Phương pháp viết Khóa luận</h3>
+        <p>Đóng góp: Nguyễn Văn A (K59)</p>
+        <button data-file="viet-khoa-luan.docx">Tải về</button>
+      </div>
+      
+      <div class="doc-card">
+        <i class="fas fa-file-powerpoint fa-3x" style="color: #d24726; margin-bottom: 15px;"></i>
+        <h3>Kỹ năng thuyết trình cơ bản</h3>
+        <p>Đóng góp: Lê Phương Thảo (K60)</p>
+        <button data-file="ky-nang-thuyet-trinh.pptx">Tải về</button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="/shared/js/auth.js?v=1.1"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script>
+      // Auth Update User Name
+      document.addEventListener('DOMContentLoaded', () => {
+          const token = typeof getToken === 'function' ? getToken() : null;
+          if (token) {
+              const userInfoStr = localStorage.getItem('user_info');
+              if (userInfoStr) {
+                  const user = JSON.parse(userInfoStr);
+                  const userNameDisplay = document.getElementById('user-name-display');
+                  if (userNameDisplay) {
+                      userNameDisplay.innerHTML = `<i class="fas fa-user-circle"></i> ${user.fullName}`;
+                  }
+              }
+          }
+      });
+
+      // File Selection Display
+      document.getElementById('fileUpload').addEventListener('change', function() {
+        if (this.files.length > 0) {
+            document.getElementById('fileName').innerHTML = "<i class='fas fa-check-circle'></i> File đã chọn: " + this.files[0].name;
+        }
+      });
+
+      // Upload Handler
+      function handleUpload() {
+          const fileInput = document.getElementById('fileUpload');
+          if(fileInput.files.length === 0) {
+              alert("⚠️ Vui lòng ghim một file (nhấn nút Chọn File) trước khi tải lên!");
+              return;
+          }
+          alert("✅ Tải lên học liệu thành công! Ban quản trị sẽ kiểm duyệt tài liệu của bạn trong thời gian sớm nhất.");
+          // Reset form sau khi Upload
+          fileInput.value = "";
+          document.getElementById('fileName').textContent = "";
+      }
+    </script>
+  </body>
+</html>
+

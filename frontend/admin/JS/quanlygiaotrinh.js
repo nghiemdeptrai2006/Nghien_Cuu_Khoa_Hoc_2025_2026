@@ -1,0 +1,399 @@
+/* =========================================================
+   MODAL FUNCTIONALITY (VIEW & EDIT DOCUMENT) - ADMIN
+   ========================================================= */
+
+// DOM Elements
+const viewModal = document.getElementById('viewModal');
+const editModal = document.getElementById('editModal');
+
+// Open View Modal with dynamic data
+function openViewModal(title, subject, meta) {
+    document.getElementById('viewModalTitle').textContent = title;
+    document.getElementById('viewModalSubject').querySelector('span').textContent = subject;
+    document.getElementById('viewModalMeta').querySelector('span').textContent = meta;
+    
+    viewModal.classList.add('active');
+}
+
+// Close View Modal
+function closeViewModal() {
+    viewModal.classList.remove('active');
+}
+
+// Fetch single textbook by ID and open modal (for deep-linking)
+async function viewTextbookById(id) {
+    const token = localStorage.getItem('token');
+    try {
+        const res = await fetch(`http://localhost:8080/api/documents/${id}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const result = await res.json();
+        if (res.ok && result.code === 200) {
+            const doc = result.data;
+            const fileType = (doc.fileUrl ? doc.fileUrl.split('.').pop().toUpperCase() : 'PDF');
+            const fileSize = doc.fileSize ? (doc.fileSize / 1024 / 1024).toFixed(1) + 'MB' : 'N/A';
+            const author = doc.uploaderName || doc.uploadedBy || 'Nguyễn A';
+            const year = doc.publishYear || 'N/A';
+            const extInfo = `${fileType} • ${fileSize} • Xuất bản: ${year} • Đăng bởi: ${author}`;
+            
+            openViewModal(doc.title, doc.major || 'Chưa phân loại', extInfo);
+        } else {
+            console.error("Textbook not found or unauthorized");
+        }
+    } catch (error) {
+        console.error("Error fetching textbook details", error);
+    }
+}
+
+// Open Edit Modal with pre-filled data (for adding/updating)
+function openEditModal(title, subject) {
+    // If we are passing empty strings, it means "Add New"
+    if(!title) {
+        document.getElementById('uploadGiaotrinhForm').reset();
+    } else {
+        document.getElementById('editDocName').value = title;
+        document.getElementById('editDocSubject').value = subject;
+    }
+    
+    editModal.classList.add('active');
+}
+
+// Close Edit Modal
+function closeEditModal() {
+    editModal.classList.remove('active');
+}
+
+// Handle clicks outside of modals to close them
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        closeViewModal();
+        closeEditModal();
+    }
+});
+
+
+// =========================================================
+// FETCH AND RENDER TEXTBOOKS (GIAO_TRINH)
+// =========================================================
+document.addEventListener('DOMContentLoaded', () => {
+    loadAdminTextbooks().then(() => {
+        // Check for deep-linking (#id=123 or ?id=123)
+        const urlParams = new URLSearchParams(window.location.search);
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        const autoId = urlParams.get('id') || hashParams.get('id');
+        
+        if (autoId) {
+            viewTextbookById(autoId);
+        }
+    });
+});
+
+function getFileIconClass(fileUrl, docType) {
+    if (!fileUrl) return 'fa-file-pdf';
+    const ext = fileUrl.split('.').pop().toLowerCase();
+    switch (ext) {
+        case 'pdf': return 'fa-file-pdf';
+        case 'doc': case 'docx': return 'fa-file-word';
+        case 'ppt': case 'pptx': return 'fa-file-powerpoint';
+        case 'xls': case 'xlsx': return 'fa-file-excel';
+        case 'zip': case 'rar': return 'fa-file-zipper';
+        case 'jpg': case 'jpeg': case 'png': return 'fa-file-image';
+        default: return 'fa-file-lines';
+    }
+}
+
+// =========================================================
+// SMART FOLDER SYSTEM (Major > Year)
+// =========================================================
+let allDocuments = []; // Global storage
+let currentPath = [];  // Navigation path: [] (Root), ['CNTT'] (Major), ['CNTT', '2025'] (Year)
+
+function updateBreadcrumbs() {
+    const breadcrumb = document.getElementById('folderBreadcrumb');
+    if (!breadcrumb) return;
+
+    let html = `<div class="breadcrumb-item"><a href="javascript:void(0)" onclick="navigateToPath([])"><i class="fa-solid fa-house-chimney"></i> Tất cả giáo trình</a></div>`;
+    
+    currentPath.forEach((folder, index) => {
+        const pathSoFar = currentPath.slice(0, index + 1);
+        html += `<div class="breadcrumb-item"><a href="javascript:void(0)" onclick='navigateToPath(${JSON.stringify(pathSoFar)})'>${folder}</a></div>`;
+    });
+
+    breadcrumb.innerHTML = html;
+}
+
+function navigateToPath(path) {
+    currentPath = path;
+    updateBreadcrumbs();
+    renderFilteredGrid();
+}
+
+function renderFilteredGrid() {
+    const grid = document.getElementById('adminDocumentGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    
+    // Level 0: Root - Show Major folders
+    if (currentPath.length === 0) {
+        const majors = [...new Set(allDocuments.map(doc => doc.major || 'Chưa phân loại'))].sort();
+        majors.forEach(major => {
+            const count = allDocuments.filter(doc => (doc.major || 'Chưa phân loại') === major).length;
+            renderFolderCard(major, `${count} giáo trình`, () => navigateToPath([major]));
+        });
+    } 
+    // Level 1: Major - Show Year folders
+    else if (currentPath.length === 1) {
+        const major = currentPath[0];
+        const docsInMajor = allDocuments.filter(doc => (doc.major || 'Chưa phân loại') === major);
+        const years = [...new Set(docsInMajor.map(doc => doc.publishYear || 'Khác'))].sort((a, b) => b - a);
+        
+        years.forEach(year => {
+            const count = docsInMajor.filter(doc => (doc.publishYear || 'Khác') === year).length;
+            renderFolderCard(year, `${count} giáo trình`, () => navigateToPath([major, year]));
+        });
+    }
+    // Level 2: Year - Show actual documents
+    else {
+        const major = currentPath[0];
+        const year = currentPath[1];
+        const finalDocs = allDocuments.filter(doc => 
+            (doc.major || 'Chưa phân loại') === major && 
+            (doc.publishYear || 'Khác') === year
+        );
+
+        if (finalDocs.length === 0) {
+            grid.innerHTML = '<p style="text-align:center; width:100%; color:var(--text-muted);">Thư mục này trống.</p>';
+        } else {
+            finalDocs.forEach(doc => renderDocumentCard(doc));
+        }
+    }
+}
+
+function renderFolderCard(name, subtext, onClick) {
+    const grid = document.getElementById('adminDocumentGrid');
+    const folder = document.createElement('div');
+    folder.className = 'folder-card';
+    folder.onclick = onClick;
+    folder.innerHTML = `
+        <div class="folder-icon"><i class="fa-solid fa-folder"></i></div>
+        <h3>${name}</h3>
+        <span>${subtext}</span>
+    `;
+    grid.appendChild(folder);
+}
+
+// Helper to navigate to root
+function navigateToRoot() {
+    navigateToPath([]);
+}
+
+// =========================================================
+// CREATE CATEGORY/FOLDER MODAL LOGIC
+// =========================================================
+function openCreateMajorModal() {
+    const modal = document.getElementById('createMajorModal');
+    if (modal) modal.classList.add('active');
+}
+
+function closeCreateMajorModal() {
+    const modal = document.getElementById('createMajorModal');
+    if (modal) modal.classList.remove('active');
+}
+
+function handleCreateMajor() {
+    const name = document.getElementById('newMajorName').value.trim();
+    if (!name) {
+        alert("⚠️ Vui lòng nhập tên thư mục/môn học!");
+        return;
+    }
+    
+    // Virtual logic
+    alert(`✅ Đã thiết lập danh mục: ${name}\nThư mục sẽ tự động xuất hiện khi có tài liệu thuộc môn học này.`);
+    closeCreateMajorModal();
+    document.getElementById('newMajorName').value = '';
+}
+
+// =========================================================
+// FILTER LOGIC
+// =========================================================
+const filterDrawer = document.getElementById('filterDrawer');
+const btnFilterDoc = document.getElementById('btn-filter-doc');
+
+if (btnFilterDoc && filterDrawer) {
+    btnFilterDoc.addEventListener('click', () => {
+        filterDrawer.classList.toggle('active');
+        btnFilterDoc.classList.toggle('active');
+    });
+}
+
+async function applyFilters() {
+    const major = document.getElementById('filterMajor').value.trim();
+    const year = document.getElementById('filterYear').value.trim();
+    const keyword = document.getElementById('filterKeyword').value.trim();
+    
+    await loadAdminTextbooks({ major, year, keyword });
+}
+
+function clearFilters() {
+    document.getElementById('filterMajor').value = '';
+    document.getElementById('filterYear').value = '';
+    document.getElementById('filterKeyword').value = '';
+    loadAdminTextbooks();
+}
+
+async function loadAdminTextbooks(filters = {}) {
+    const grid = document.getElementById('adminDocumentGrid');
+    if (!grid) return;
+
+    grid.innerHTML = '<p style="color: var(--text-muted); text-align: center; width: 100%;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</p>';
+
+    const token = localStorage.getItem('token');
+    const headers = token ? { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' };
+
+    try {
+        let url = 'http://localhost:8080/api/documents?type=GIAO_TRINH';
+        const isFiltering = filters.major || filters.year || filters.keyword;
+
+        if (filters.major) url += `&major=${encodeURIComponent(filters.major)}`;
+        if (filters.year) url += `&publishYear=${encodeURIComponent(filters.year)}`;
+        if (filters.keyword) url += `&keyword=${encodeURIComponent(filters.keyword)}`;
+
+        const response = await fetch(url, { method: 'GET', headers: headers });
+
+        if (response.ok) {
+            const result = await response.json();
+            allDocuments = result.data || [];
+            
+            grid.innerHTML = '';
+            
+            if (isFiltering) {
+                // Flat mode for search results
+                currentPath = [];
+                updateBreadcrumbs();
+                if (allDocuments.length === 0) {
+                    grid.innerHTML = '<p style="color: var(--text-muted); text-align: center; width: 100%;">Không tìm thấy kết quả phù hợp.</p>';
+                } else {
+                    allDocuments.forEach(doc => renderDocumentCard(doc));
+                }
+            } else {
+                // Folder mode
+                renderFilteredGrid();
+                updateBreadcrumbs();
+            }
+        }
+    } catch (e) {
+        console.error("Failed to fetch textbooks", e);
+        grid.innerHTML = '<p style="color: red; text-align: center; width: 100%;">Không thể kết nối đến Máy chủ API.</p>';
+    }
+}
+
+function renderDocumentCard(doc) {
+    const grid = document.getElementById('adminDocumentGrid');
+    const title = doc.title || 'Giáo trình không tên';
+    const major = doc.major || 'Chưa phân loại';
+    const fileType = (doc.fileUrl ? doc.fileUrl.split('.').pop().toUpperCase() : 'PDF');
+    const fileSize = doc.fileSize ? (doc.fileSize / 1024 / 1024).toFixed(1) + 'MB' : 'N/A';
+    const author = doc.uploaderName || doc.uploadedBy || 'Giảng viên';
+    const year = doc.publishYear || 'N/A';
+    
+    const extInfo = `${fileType} • ${fileSize} • Xuất bản: ${year} • Đăng bởi: ${author}`;
+    const iconClass = getFileIconClass(doc.fileUrl, doc.type);
+
+    const card = document.createElement('div');
+    card.classList.add('document-card');
+    
+    card.innerHTML = `
+        <div class="doc-icon"><i class="fa-solid ${iconClass}"></i></div>
+        <div class="doc-info">
+            <h3 title="${title}">${title}</h3>
+            <p><i class="fa-solid fa-book"></i> Môn học: ${major}</p>
+            <span>${extInfo}</span>
+        </div>
+        <div class="doc-actions">
+            <a onclick="openViewModal('${title.replace(/'/g, "\\'")}', '${major.replace(/'/g, "\\'")}', '${extInfo.replace(/'/g, "\\'")}')" class="btn-sm btn-view"><i class="fa-solid fa-eye"></i> Xem</a>
+            <a onclick="openEditModal('${title.replace(/'/g, "\\'")}', '${major.replace(/'/g, "\\'")}')" class="btn-sm btn-edit"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+            <a onclick="deleteDocument(${doc.id})" class="btn-sm btn-delete"><i class="fa-solid fa-trash-can"></i> Xóa</a>
+        </div>
+    `;
+    grid.appendChild(card);
+}
+
+// =========================================================
+// UPLOAD NEW TEXTBOOK
+// =========================================================
+async function saveDocument() {
+    const form = document.getElementById('uploadGiaotrinhForm');
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    // Change button text to show loading
+    const saveBtn = document.querySelector('#editModal .btn-primary');
+    const originalText = saveBtn.innerHTML;
+    saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang tải lên...';
+    saveBtn.disabled = true;
+
+    try {
+        const formData = new FormData(form);
+        // Force the type to be GIAO_TRINH
+        formData.append("type", "GIAO_TRINH");
+
+        const token = localStorage.getItem('token');
+        const headers = token ? { 'Authorization': 'Bearer ' + token } : {};
+
+        const response = await fetch('http://localhost:8080/api/documents/upload', {
+            method: 'POST',
+            headers: headers,
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.code === 200) {
+            alert('✅ Cập nhật file giáo trình thành công!');
+            closeEditModal();
+            loadAdminTextbooks(); // Refresh the grid
+        } else {
+            alert('❌ Lỗi tải lên: ' + (result.message || 'Hệ thống từ chối do dung lượng quá lớn hoặc sai định dạng.'));
+        }
+    } catch (error) {
+        console.error("Upload error", error);
+        alert('❌ Không thể kết nối tới server. Vui lòng thử lại sau.');
+    } finally {
+        saveBtn.innerHTML = originalText;
+        saveBtn.disabled = false;
+    }
+}
+
+// =========================================================
+// DELETE TEXTBOOK
+// =========================================================
+async function deleteDocument(docId) {
+    if (!confirm('Bạn có chắc chắn muốn xóa giáo trình này không? Hành động này không thể hoàn tác.')) {
+        return;
+    }
+
+    const token = localStorage.getItem('token');
+    const headers = token ? { 'Authorization': 'Bearer ' + token } : {};
+
+    try {
+        const response = await fetch(`http://localhost:8080/api/documents/${docId}`, {
+            method: 'DELETE',
+            headers: headers
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.code === 200) {
+            alert('✅ Đã xóa giáo trình thành công.');
+            loadAdminTextbooks();
+        } else {
+            alert('❌ Xóa thất bại: ' + (result.message || 'Lỗi không xác định'));
+        }
+    } catch (error) {
+        console.error("Delete error", error);
+        alert('❌ Lỗi kết nối đến server.');
+    }
+}

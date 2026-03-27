@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Chat | Hệ thống Quản trị Học liệu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlychat.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap icon"></i>
+                <h2>QL-HOCLIEU</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlygiaotrinh.html">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Quản lý Giáo trình</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyluanvan.html">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Quản lý Luận văn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyhotro.html">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Quản lý Hỗ trợ</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlychat.html">
+                        <i class="fa-solid fa-message"></i>
+                        <span>Quản lý Chat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Chat</h2>
+                <p>Hỗ trợ trực tiếp cho Giảng viên và Sinh viên</p>
+            </div>
+            <div class="nav-right">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4 id="user-name-display-header">Quản trị viên</h4>
+                                <p id="user-role-display">Admin</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-user"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-gear"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <!-- User List Sidebar -->
+            <div class="chat-sidebar">
+                <div class="search-users">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Tìm người dùng...">
+                </div>
+                <div class="user-list" id="userList">
+                    <div class="loading-chats">Đang tải cuộc hội thoại...</div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-main" id="chatMain">
+                <div class="chat-empty-state">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>Chọn một cuộc hội thoại</h3>
+                    <p>Chọn người dùng từ danh sách bên trái để bắt đầu hỗ trợ.</p>
+                </div>
+
+                <!-- Active Conversation -->
+                <div class="conversation-view" style="display: none;">
+                    <div class="chat-header">
+                        <div class="user-info">
+                            <div class="avatar" id="activeUserAvatar">U</div>
+                            <div>
+                                <h4 id="activeUserName">User Name</h4>
+                                <span id="activeUserStatus">Offline</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="messageContainer"></div>
+                    <div class="chat-input-area">
+                        <textarea id="chatInput" placeholder="Nhập tin nhắn trả lời..."></textarea>
+                        <button id="btnSend"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlychat.js"></script>
+</body>
+</html>

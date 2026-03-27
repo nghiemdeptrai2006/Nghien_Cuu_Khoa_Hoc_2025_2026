@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hỗ trợ sinh viên | Kho dữ liệu số</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/hotro.css" />
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html" class="active"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <div class="notifications" style="margin-right: 15px; color: #1a237e;">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge" id="notif-badge">0</span>
+              <div class="notif-dropdown">
+                  <div class="notif-header">
+                      <h4>Thông báo mới</h4>
+                      <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                  </div>
+                  <div class="notif-list" id="notif-list">
+                      <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Không có thông báo nào</div>
+                  </div>
+                  <div class="notif-footer">
+                      <a href="#">Xem tất cả thông báo</a>
+                  </div>
+              </div>
+            </div>
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+      <h2>Hỗ trợ & Tài khoản sinh viên</h2>
+      <p>Quản lý thông tin – hỗ trợ kỹ thuật – giải đáp thắc mắc</p>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="support-section">
+      <!-- ===== THÔNG TIN CÁ NHÂN ===== -->
+      <div class="support-card profile-card">
+        <div class="card-header">
+            <i class="fa-solid fa-user-circle fa-3x"></i>
+            <h3>Thông tin cá nhân</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Họ và tên</label>
+                <input type="text" id="fullNameDisplay" value="Nguyễn Văn B" />
+            </div>
+            <div class="form-group">
+                <label>Mã sinh viên</label>
+                <input type="text" id="studentIdDisplay" value="SV20231234" disabled />
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="emailDisplay" value="sinhvien@edu.vn" />
+            </div>
+        </div>
+        <div class="actions">
+          <button class="btn-update">Cập nhật thông tin</button>
+        </div>
+      </div>
+
+      <!-- ===== ĐỔI MẬT KHẨU ===== -->
+      <div class="support-card password-card">
+        <div class="card-header">
+            <i class="fa-solid fa-shield-halved fa-3x"></i>
+            <h3>Đổi mật khẩu</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Mật khẩu hiện tại</label>
+                <input type="password" placeholder="••••••••" />
+            </div>
+            <div class="form-group">
+                <label>Mật khẩu mới</label>
+                <input type="password" placeholder="Tối thiểu 6 ký tự" />
+            </div>
+            <div class="form-group">
+                <label>Xác nhận mật khẩu</label>
+                <input type="password" placeholder="Nhập lại mật khẩu mới" />
+            </div>
+        </div>
+        <div class="actions">
+          <button class="btn-password">Đổi mật khẩu</button>
+        </div>
+      </div>
+
+      <!-- ===== HỖ TRỢ KỸ THUẬT ===== -->
+      <div class="support-card help-card">
+        <div class="card-header">
+            <i class="fa-solid fa-headset fa-3x"></i>
+            <h3>Hỗ trợ kỹ thuật</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label>Mô tả vấn đề</label>
+                <textarea rows="5" placeholder="Bạn đang gặp khó khăn gì? Hãy mô tả chi tiết để chúng tôi hỗ trợ tốt nhất..."></textarea>
+            </div>
+        </div>
+        <div class="actions">
+          <button class="btn-help">Gửi yêu cầu hỗ trợ</button>
+        </div>
+      </div>
+
+      <!-- ===== FAQ ===== -->
+      <div class="support-card faq-card">
+        <div class="card-header">
+            <i class="fa-solid fa-lightbulb fa-3x"></i>
+            <h3>Câu hỏi thường gặp</h3>
+        </div>
+        <div class="card-body">
+            <ul class="faq-mini-list">
+                <li><i class="fas fa-check-circle"></i> Làm sao để tải tài liệu?</li>
+                <li><i class="fas fa-check-circle"></i> Vì sao không xem được luận văn?</li>
+                <li><i class="fas fa-check-circle"></i> Quên mật khẩu thì làm thế nào?</li>
+            </ul>
+        </div>
+        <div class="actions">
+          <button class="btn-faq">Xem chi tiết FAQ</button>
+        </div>
+      </div>
+
+      <!-- ===== ĐĂNG XUẤT ===== -->
+      <div class="support-card logout-card">
+        <div class="card-header">
+            <i class="fa-solid fa-power-off fa-3x"></i>
+            <h3>Đăng xuất</h3>
+        </div>
+        <div class="card-body">
+            <p>Thoát khỏi phiên làm việc hiện tại trên hệ thống Kho dữ liệu số.</p>
+        </div>
+        <div class="actions">
+          <button class="btn-logout-alt" onclick="logout()">Đăng xuất ngay</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MODAL BẢNG FAQ ===== -->
+    <div id="faqModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="viewModalTitle">📌 Câu hỏi thường gặp</h3>
+          <button class="close-btn" onclick="closeFaqModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #ccc;">
+              <strong>1. Làm sao để tải tài liệu?</strong><br>
+              <span style="color: #555; font-size: 14px;">Chỉ sinh viên thuộc ngành học tương ứng mới có quyền Tải tài liệu về. Nếu hệ thống báo không có quyền, vui lòng liên hệ Ban quản lý Khoa.</span>
+            </li>
+            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #ccc;">
+              <strong>2. Vì sao không xem được luận văn?</strong><br>
+              <span style="color: #555; font-size: 14px;">Luận văn thường có định dạng PDF nặng hoặc file bảo mật, thử tải trực tiếp về thiết bị thay vì xem trực tuyến trên trình duyệt.</span>
+            </li>
+            <li>
+              <strong>3. Quên mật khẩu thì làm thế nào?</strong><br>
+              <span style="color: #555; font-size: 14px;">Báo trực tiếp cho Cán bộ Hệ thống (SĐT: 024-xxxx-xxxx) hoặc sử dụng tính năng "Quên mật khẩu" từ màn hình Đăng nhập để Khôi phục.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer" style="text-align: right;">
+          <button class="btn-cancel" onclick="closeFaqModal()" style="padding: 10px 20px; border-radius: 6px; border: none; background: #6c757d; color: white; cursor: pointer;">Đóng lại</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/shared/js/auth.js?v=1.1"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/hotro.js"></script>
+    <script src="../JS/support.js"></script>
+  </body>
+</html>
+

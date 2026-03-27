@@ -1,0 +1,63 @@
+{
+    "updated_at":  "2026-03-16T14:10:00+07:00",
+    "session_number":  5,
+    "working_on":  {
+                       "feature":  "OTP \u0026 Email System Verification",
+                       "current_phase":  "Debugging SMTP Handshake",
+                       "status":  "running",
+                       "last_run":  "2026-03-27T00:15:08+07:00",
+                       "last_run_url":  "http://localhost:5500",
+                       "files_modified":  [
+                                              "backend/src/main/resources/application.properties",
+                                              "backend/src/main/java/com/nckh/backend/auth/EmailService.java",
+                                              "backend/src/main/java/com/nckh/backend/auth/AuthController.java",
+                                              "backend/src/main/java/com/nckh/backend/config/SecurityConfig.java",
+                                              "backend/src/main/java/com/nckh/backend/auth/OtpService.java"
+                                          ],
+                       "blockers":  [
+                                        "OTP emails still not arriving despite real App Password - suspected SMTP handshake or ISP/Firewall issue"
+                                    ],
+                       "notes":  "Đã chuyển OTP sang 6 số. Đã bật mail.debug=true. Đã whitelisted test-mail endpoint. Chờ user gửi logs console để debug sâu SMTP."
+                   },
+    "pending_tasks":  [
+                          {
+                              "task":  "Analyzed SMTP logs from User",
+                              "priority":  "critical",
+                              "notes":  "Check for \u0027STARTTLS failed\u0027 or \u0027AuthenticationFailed\u0027 in logs"
+                          },
+                          {
+                              "task":  "Dọn dẹp log [CRITICAL LOG] sau khi fix xong",
+                              "priority":  "low"
+                          }
+                      ],
+    "completed_this_session":  [
+                                   "Upgrade OTP from 5 to 6 digits (frontend \u0026 backend sync)",
+                                   "Applied live Google App Password (wqkn zess cqlm qtlz) to application.properties",
+                                   "Implemented ultra-verbose logging in EmailService \u0026 AuthController",
+                                   "Enabled JavaMail Debug mode for full SMTP visibility",
+                                   "Whitelisted /api/auth/test-mail in SecurityConfig to bypass 403 Forbidden",
+                                   "Fixed jakarta.annotation.PostConstruct for Spring Boot 3 compatibility"
+                               ],
+    "decisions_made":  [
+                           {
+                               "decision":  "Use 6-digit OTP instead of 5",
+                               "reason":  "Standard security practice and consistent with project requirements"
+                           },
+                           {
+                               "decision":  "Enable spring.mail.override-receiver=true for dev",
+                               "reason":  "Ensure all OTPs go to developer email during testing phase"
+                           }
+                       ],
+    "errors_resolved":  [
+                            {
+                                "error":  "403 Forbidden on test-mail endpoint",
+                                "solution":  "Added explicit permitAll() in SecurityConfig.java",
+                                "resolved":  true
+                            },
+                            {
+                                "error":  "Syntax error in EmailService (missing brace)",
+                                "solution":  "Cleaned up trailing text and closed class brace",
+                                "resolved":  true
+                            }
+                        ]
+}

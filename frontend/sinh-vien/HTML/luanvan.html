@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Luận văn | Khoa Đào tạo Quốc tế</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/luanvan.css" />
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html" class="active"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <div class="notifications" style="margin-right: 15px; color: #1a237e;">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge" id="notif-badge">0</span>
+              <div class="notif-dropdown">
+                  <div class="notif-header">
+                      <h4>Thông báo mới</h4>
+                      <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                  </div>
+                  <div class="notif-list" id="notif-list">
+                      <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Không có thông báo nào</div>
+                  </div>
+                  <div class="notif-footer">
+                      <a href="#">Xem tất cả thông báo</a>
+                  </div>
+              </div>
+            </div>
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout logout-link"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Kho luận văn số</h2>
+        <p>Lưu trữ – Tra cứu – Tham khảo học thuật</p>
+      </div>
+    </section>
+
+    <section class="filter-area">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Tìm kiếm tên luận văn, đề tài..." onkeyup="handleSearch(event)" />
+      </div>
+
+      <select id="filterMajor">
+        <option>Tất cả ngành</option>
+        <option>CNTT</option>
+        <option>Kinh tế</option>
+        <option>Kỹ thuật</option>
+      </select>
+
+      <select id="filterLevel">
+        <option>Tất cả cấp độ</option>
+        <option>Đại học</option>
+        <option>Thạc sĩ</option>
+      </select>
+
+      <select id="filterYear">
+        <option>Tất cả năm</option>
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+      </select>
+
+      <button class="btn-upload-trigger" onclick="openUploadModal()">
+        <i class="fas fa-cloud-upload-alt"></i> Đăng tải luận văn
+      </button>
+    </section>
+
+    <section class="thesis-list">
+      <!-- Dữ liệu thật sẽ được đồng bộ tự động tại đây -->
+      <div style="grid-column: 1/-1; text-align: center; padding: 100px 0;">
+          <i class="fas fa-circle-notch fa-spin fa-3x" style="color: #8B5CF6; margin-bottom: 20px;"></i>
+          <p style="color: #64748b; font-weight: 500;">Đang đồng bộ dữ liệu thật...</p>
+      </div>
+    </section>
+
+    <!-- ===== PREMIUM UPLOAD MODAL (EMERALD V2) ===== -->
+    <div id="uploadModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-graduation-cap"></i> Đăng tải luận văn mới</h3>
+          <button class="close-btn" onclick="closeUploadModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="uploadForm" onsubmit="handleUploadSubmit(event)">
+            <div class="form-group mb-3">
+                <label>Tên đề tài luận văn *</label>
+                <input type="text" id="docTitle" class="form-control" placeholder="Ví dụ: Xây dựng hệ thống quản lý..." required />
+            </div>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label>Chuyên ngành *</label>
+                    <select id="docMajor" class="form-control" required>
+                        <option value="CNTT">CNTT</option>
+                        <option value="Kinh tế">Kinh tế</option>
+                        <option value="Kỹ thuật">Kỹ thuật</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label>Cấp độ *</label>
+                    <select id="docLevel" class="form-control" required>
+                        <option value="Đại học">Đại học</option>
+                        <option value="Thạc sĩ">Thạc sĩ</option>
+                        <option value="Tiến sĩ">Tiến sĩ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label>Năm bảo vệ *</label>
+                <input type="number" id="docYear" class="form-control" value="2025" required />
+            </div>
+            <div class="form-group mb-4">
+                <label>Tệp luận văn (PDF) *</label>
+                <input type="file" id="docFile" accept=".pdf" class="form-control" required />
+            </div>
+            <div class="modal-footer p-0">
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-cloud-upload-alt"></i> Tải lên hệ thống
+                </button>
+                <button type="button" class="btn-cancel" onclick="closeUploadModal()">Hủy bỏ</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Document Viewer Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://unpkg.com/docx-preview/dist/docx-preview.js"></script>
+    <script src="../../../shared/js/viewer.js"></script>
+
+
+    <!-- =========================================================
+         THESIS ENGINE (INLINED FOR RELIABILITY)
+         ========================================================= -->
+    <script>
+      (function() {
+        console.log("🟢 [THESIS-ENGINE] ACQUIRING DATA SYNC...");
+        const API_BASE = 'http://localhost:8080/api';
+        let allTheses = [];
+
+        async function loadTheses() {
+          const container = document.querySelector('.thesis-list');
+          if (!container) return;
+
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+          try {
+            const url = `${API_BASE}/documents?type=LUAN_VAN`;
+            const token = localStorage.getItem('token');
+            const headers = {};
+            if (token && token !== 'null') headers['Authorization'] = 'Bearer ' + token;
+
+            const response = await fetch(url, { headers, signal: controller.signal });
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                if (response.status === 403) throw new Error('403 Forbidden - Backend Restart Required');
+                throw new Error(`Server Error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            allTheses = result.data || [];
+            renderTheses(allTheses, container);
+          } catch (error) {
+            clearTimeout(timeoutId);
+            console.error("❌ SYNC ERROR:", error);
+            container.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                    <i class="fas fa-exclamation-triangle fa-3x" style="color: #ef4444; margin-bottom: 20px;"></i>
+                    <p style="color: #64748b; margin-bottom: 10px; font-weight: 600;">
+                        ${error.name === 'AbortError' ? '⚠️ KẾT NỐI QUÁ HẠN (TIMEOUT 10S)' : '⚠️ LỖI ĐỒNG BỘ DỮ LIỆU'}
+                    </p>
+                    <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 20px;">${error.message}</p>
+                    <button onclick="location.reload()" style="background:#8B5CF6; border:none; padding:12px 25px; border-radius:10px; color:white; cursor:pointer;">
+                        THỬ LẠI / HARD REFRESH
+                    </button>
+                </div>
+            `;
+          }
+        }
+
+        function renderTheses(theses, container) {
+          container.innerHTML = theses.length === 0 
+            ? '<div style="grid-column:1/-1;text-align:center;padding:80px;color:#94a3b8;"><p>Không tìm thấy luận văn nào.</p></div>'
+            : "";
+          
+          theses.forEach(doc => {
+            const fileUrl = doc.fileUrl ? `${API_BASE}/documents/files/` + encodeURIComponent(doc.fileUrl) : "#";
+            const card = document.createElement("div");
+            card.className = "thesis-card";
+            card.innerHTML = `
+                <h3>${doc.title}</h3>
+                <p><i class="fas fa-university"></i> Chuyên ngành: ${doc.major}</p>
+                <p><i class="fas fa-id-card"></i> Cấp độ: ${doc.docLevel || 'Đại học'}</p>
+                <p><i class="far fa-calendar-alt"></i> Năm: ${doc.publishYear}</p>
+                <button onclick="window.previewDocument('${fileUrl}', '${doc.fileUrl}')">Xem chi tiết</button>
+            `;
+            container.appendChild(card);
+          });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const fullName = localStorage.getItem('fullName');
+            const profileSpan = document.querySelector('.user-profile-menu span');
+            if (fullName && profileSpan) profileSpan.innerHTML = '<i class="fas fa-user-circle"></i> ' + fullName;
+            loadTheses();
+        });
+
+        // Global functions
+        window.handleSearch = () => {
+          clearTimeout(window.searchDebounce);
+          window.searchDebounce = setTimeout(() => {
+            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+            const major = document.getElementById('filterMajor').value;
+            const level = document.getElementById('filterLevel').value;
+            const year = document.getElementById('filterYear').value;
+            const filtered = allTheses.filter(doc => (
+                (doc.title || "").toLowerCase().includes(keyword) &&
+                (major === "Tất cả ngành" || doc.major === major) &&
+                (level === "Tất cả cấp độ" || doc.docLevel === level) &&
+                (year === "Tất cả năm" || doc.publishYear.toString() === year)
+            ));
+            renderTheses(filtered, document.querySelector('.thesis-list'));
+          }, 300);
+        };
+
+        window.openUploadModal = () => document.getElementById("uploadModal").classList.add("active");
+        window.closeUploadModal = () => {
+            document.getElementById("uploadModal").classList.remove("active");
+            document.getElementById("uploadForm").reset();
+        };
+
+        window.handleUploadSubmit = async (e) => {
+            e.preventDefault();
+            const submitBtn = document.querySelector(".btn-save");
+            const formData = new FormData();
+            formData.append("title", document.getElementById("docTitle").value);
+            formData.append("major", document.getElementById("docMajor").value);
+            formData.append("docLevel", document.getElementById("docLevel").value);
+            formData.append("publishYear", document.getElementById("docYear").value);
+            formData.append("type", "LUAN_VAN");
+            formData.append("file", document.getElementById("docFile").files[0]);
+            const token = localStorage.getItem("token");
+            try {
+                if (submitBtn) submitBtn.disabled = true;
+                const response = await fetch(`${API_BASE}/documents/upload`, {
+                    method: "POST",
+                    headers: { "Authorization": "Bearer " + token },
+                    body: formData
+                });
+                if (response.ok) { alert("Tải lên thành công!"); location.reload(); }
+                else throw new Error("Lỗi tải lên");
+            } catch (error) { alert(error.message); }
+            if (submitBtn) submitBtn.disabled = false;
+        };
+      })();
+    </script>
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/support.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kho dữ liệu số | Khoa Đào tạo Quốc tế</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS/shared.css" />
+    <link rel="stylesheet" href="../CSS/trangchu.css" />
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>KHO DỮ LIỆU SỐ</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html" class="active"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="tailieu.html"><i class="fas fa-book-open"></i> Tài liệu</a>
+          <a href="giaotrinh.html"><i class="fas fa-book"></i> Giáo trình</a>
+          <a href="luanvan.html"><i class="fas fa-graduation-cap"></i> Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          <div class="user-profile-menu">
+            <div class="notifications" style="margin-right: 15px; color: #1a237e;">
+                <i class="fa-solid fa-bell"></i>
+                <span class="badge" id="notif-badge">0</span>
+                <div class="notif-dropdown">
+                    <div class="notif-header">
+                        <h4>Thông báo mới</h4>
+                        <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                    </div>
+                    <div class="notif-list" id="notif-list">
+                        <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Không có thông báo nào</div>
+                    </div>
+                    <div class="notif-footer">
+                        <a href="#">Xem tất cả thông báo</a>
+                    </div>
+                </div>
+            </div>
+            <span><i class="fas fa-user-circle"></i> S/V Test</span>
+            <button class="btn-logout logout-link"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h2>Hệ thống lưu trữ & tra cứu học liệu số</h2>
+      <p>Phục vụ sinh viên – giảng viên – cán bộ khoa</p>
+
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Nhập tên tài liệu, môn học, từ khóa..."
+        />
+        <button id="searchBtn">Tìm kiếm</button>
+      </div>
+
+      <div class="search-suggestions">
+        <span>Gợi ý:</span>
+        <a href="#" onclick="fillSearch('Luận văn 2024')">Luận văn 2024</a>
+        <a href="#" onclick="fillSearch('Giáo trình IT')">Giáo trình IT</a>
+        <a href="#" onclick="fillSearch('Slide bài giảng')">Slide bài giảng</a>
+        <a href="#" onclick="fillSearch('Kỹ thuật phần mềm')">Kỹ thuật phần mềm</a>
+      </div>
+    </section>
+
+    <!-- SEARCH RESULTS (ẩn mặc định, hiện khi search) -->
+    <section id="search-results-section" style="display:none; background:#f5f7fa; padding: 40px 50px;">
+      <div style="max-width:1200px; margin:0 auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 id="search-results-title" style="color:#1a237e; font-size:1.4rem; font-weight:700;">
+            <i class="fas fa-search"></i> Kết quả tìm kiếm
+          </h2>
+          <button onclick="clearSearch()" style="background:none; border:1px solid #ccc; padding:6px 14px; border-radius:20px; cursor:pointer; color:#666; font-size:0.9rem;">
+            <i class="fas fa-times"></i> Đóng
+          </button>
+        </div>
+        <div id="search-results-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap:20px;">
+          <!-- Kết quả sẽ được inject bởi JS -->
+        </div>
+      </div>
+    </section>
+
+
+    <section class="features">
+      <div class="feature-card" onclick="window.location.href='tailieu.html'" style="cursor: pointer;">
+        <h3>📘 Tài liệu học tập</h3>
+        <p>Slide, bài giảng, tài liệu tham khảo</p>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='giaotrinh.html'" style="cursor: pointer;">
+        <h3>📗 Giáo trình</h3>
+        <p>Giáo trình chính thức của khoa</p>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='luanvan.html'" style="cursor: pointer;">
+        <h3>📙 Luận văn</h3>
+        <p>Luận văn, báo cáo tốt nghiệp</p>
+      </div>
+
+      <div class="feature-card" onclick="window.location.href='hoclieumo.html'" style="cursor: pointer;">
+        <h3>🌐 Học liệu mở</h3>
+        <p>Tài nguyên chia sẻ miễn phí</p>
+      </div>
+    </section>
+
+    <!-- STATISTICS -->
+    <section class="stats">
+      <div class="stat-box">
+        <h3><span class="counter" data-target="1200">0</span>+</h3>
+        <p>Tài liệu</p>
+      </div>
+      <div class="stat-box">
+        <h3><span class="counter" data-target="350">0</span>+</h3>
+        <p>Giáo trình</p>
+      </div>
+      <div class="stat-box">
+        <h3><span class="counter" data-target="800">0</span>+</h3>
+        <p>Sinh viên truy cập</p>
+      </div>
+    </section>
+
+    <!-- Support elements will be injected by support.js -->
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop">↑</button>
+
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Document Viewer Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://unpkg.com/docx-preview/dist/docx-preview.js"></script>
+    <script src="../../../shared/js/viewer.js"></script>
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/support.js"></script>
+  </body>
+</html>
+

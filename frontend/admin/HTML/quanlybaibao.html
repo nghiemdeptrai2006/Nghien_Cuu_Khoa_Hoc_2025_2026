@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài báo Khoa học | Hệ thống Quản trị NCKH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlynguoidung.css">
+    <link rel="stylesheet" href="../CSS/quanlybaibao.css">
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlydetai.html">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>Quản lý Đề tài</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlybaibao.html">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Bài báo Khoa học</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlysanpham.html">
+                        <i class="fa-solid fa-box-archive"></i>
+                        <span>Sản phẩm NCKH</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Bài báo Khoa học</h2>
+                <p>Theo dõi, phê duyệt các công bố quốc tế & trong nước của GV/SV.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh..." autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notif-badge">0</span>
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard paper-dashboard">
+            
+            <div class="user-toolbar">
+                <div class="toolbar-left">
+                    <button class="btn btn-primary" onclick="openPaperModal()"><i class="fa-solid fa-plus"></i> Đăng tải Bài báo mới</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-file-export"></i> Xuất Excel</button>
+                </div>
+                <div class="toolbar-right">
+                    <select class="form-select filter-select">
+                        <option value="all">Tất cả Phân loại</option>
+                        <option value="isi">Tạp chí Quốc tế (ISI/Scopus)</option>
+                        <option value="domestic">Tạp chí Trong nước</option>
+                        <option value="conference">Hội thảo Quốc gia/Quốc tế</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container panel">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Mã BB</th>
+                            <th style="width: 35%">Tên Bài Báo</th>
+                            <th>Tác Giả</th>
+                            <th>Loại Tạp Chí</th>
+                            <th>Trạng Thái</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="papersListBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                                <i class="fa-solid fa-spinner fa-spin" style="margin-right: 10px;"></i> Đang tải dữ liệu bài báo...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                 <div class="pagination">
+                    <button class="page-btn disabled"><i class="fa-solid fa-chevron-left"></i> Trước</button>
+                    <div class="page-numbers">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                    </div>
+                    <button class="page-btn">Sau <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div id="paperModal" class="modal-overlay">
+      <div class="modal-content" style="max-width: 700px;">
+        <div class="modal-header">
+          <h3>Đăng tải Bài báo mới lên Hệ thống</h3>
+          <button class="close-btn" onclick="closePaperModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="paperForm">
+              <div class="form-group">
+                <label>Tên Bài Báo (Tiếng Việt hoặc Tiếng Anh) (*):</label>
+                <input type="text" class="form-control" placeholder="Nhập tên bài báo..." required />
+              </div>
+              <div class="form-row">
+                  <div class="form-group half">
+                    <label>Tác giả chính:</label>
+                    <input type="text" class="form-control" placeholder="VD: GV001 - Nguyễn Văn A" />
+                  </div>
+                  <div class="form-group half">
+                    <label>Đồng tác giả (nếu có):</label>
+                    <input type="text" class="form-control" placeholder="VD: SV092, GV089..." />
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group half">
+                    <label>Phân loại Tạp chí/Hội thảo (*):</label>
+                    <select class="form-control">
+                        <option>Tạp chí Quốc tế (ISI, Scopus)</option>
+                        <option>Tạp chí Quốc tế (Khác)</option>
+                        <option>Tạp chí Trong nước (Thuộc danh mục HĐGS)</option>
+                        <option>Hội thảo Quốc gia / Quốc tế</option>
+                    </select>
+                  </div>
+                  <div class="form-group half">
+                    <label>Ngày Xuất bản / Hội thảo:</label>
+                    <input type="date" class="form-control" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Tệp đính kèm (Quyết định, Full text PDF):</label>
+                  <input type="file" class="form-control" multiple accept=".pdf,.png,.jpg" />
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="addPaperAction()"><i class="fas fa-upload"></i> Đăng tải</button>
+          <button class="btn btn-outline" onclick="closePaperModal()" style="margin-left: 10px;">Hủy bỏ</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlybaibao.js"></script>
+</body>
+</html>

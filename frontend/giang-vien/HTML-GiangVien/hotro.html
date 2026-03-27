@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trung tâm hỗ trợ Giảng viên | Kho dữ liệu số</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/shared_v59.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/hotro_v59.css" />
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <script>console.log("%c >>> AWF V6.0 RESCUE LOADED <<< ", "background: #10B981; color: white; font-weight: bold; padding: 4px;");</script>
+  </head>
+  <body>
+    <!-- VERSION BADGE FOR DEBUGGING -->
+    <div style="position: fixed; bottom: 10px; left: 10px; background: #10B981; color: white; padding: 5px 10px; border-radius: 5px; font-size: 10px; z-index: 9999; font-weight: bold; opacity: 0.7;">AWF V6.0 - PREMIUM RESCUE</div>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG-GiangVien/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>CỔNG GIẢNG VIÊN</h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="quanlytailieu.html"><i class="fas fa-book-open"></i> QL Tài liệu</a>
+          <a href="quanlygiaotrinh.html"><i class="fas fa-book"></i> QL Giáo trình</a>
+          <a href="quanlyluanvan.html"><i class="fas fa-graduation-cap"></i> QL Luận văn</a>
+          <a href="hotro.html" class="active"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          
+          <div class="user-profile-menu">
+            <div class="notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge" id="notif-badge">0</span>
+              <div class="notif-dropdown">
+                  <div class="notif-header">
+                      <h4>Thông báo mới</h4>
+                      <a href="#" id="mark-all-read">Đọc tất cả</a>
+                  </div>
+                  <div class="notif-list" id="notif-list">
+                      <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                  </div>
+                  <div class="notif-footer">
+                      <a href="#">Xem tất cả</a>
+                  </div>
+              </div>
+            </div>
+            <span>Giảng viên</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Trung tâm <span>Hỗ trợ & Tài khoản</span></h2>
+        <p>Quản lý thông tin cá nhân, thiết lập bảo mật và gửi yêu cầu trợ giúp kỹ thuật.</p>
+      </div>
+    </section>
+
+    <!-- SUPPORT CONTENT GRID -->
+    <main class="support-container">
+      
+      <!-- LEFT COLUMN: Account & Security -->
+      <div class="support-sidebar">
+        <!-- THÔNG TIN CÁ NHÂN -->
+        <div class="glass-card section-account">
+          <div class="card-header">
+            <div class="icon-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="title-group">
+              <h3>Thông tin cá nhân</h3>
+              <p>Quản lý hồ sơ giảng viên</p>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label><i class="fas fa-id-card"></i> Họ và tên</label>
+            <input type="text" value="Nguyễn Văn A" spellcheck="false" />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email công vụ</label>
+            <input type="email" value="giangvien@edu.vn" spellcheck="false" />
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-phone-alt"></i> Số điện thoại</label>
+            <input type="text" value="0123 456 789" />
+          </div>
+
+          <button class="btn-submit-main">Cập nhật hồ sơ</button>
+        </div>
+
+        <!-- ĐỔI MẬT KHẨU -->
+        <div class="glass-card section-security">
+          <div class="card-header">
+            <div class="icon-avatar security"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="title-group">
+              <h3>Bảo mật</h3>
+              <p>Thay đổi mật khẩu tài khoản</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mật khẩu hiện tại</label>
+            <input type="password" placeholder="••••••••" />
+          </div>
+
+          <div class="form-group">
+            <label>Mật khẩu mới</label>
+            <input type="password" placeholder="Nhập mật khẩu mới" />
+          </div>
+
+          <div class="form-group">
+            <label>Xác nhận mật khẩu</label>
+            <input type="password" placeholder="Nhập lại mật khẩu mới" />
+          </div>
+
+          <button class="btn-submit-secondary">Đổi mật khẩu</button>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Support & FAQ -->
+      <div class="support-main">
+        <!-- HỖ TRỢ KỸ THUẬT -->
+        <div class="glass-card section-help">
+          <div class="card-header">
+            <div class="icon-avatar help"><i class="fa-solid fa-headset"></i></div>
+            <div class="title-group">
+              <h3>Hỗ trợ kỹ thuật</h3>
+              <p>Gửi yêu cầu trợ giúp đến quản trị viên</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Vấn đề cần hỗ trợ</label>
+            <select class="form-select">
+              <option>Lỗi đăng tải tài liệu</option>
+              <option>Lỗi tài khoản/mật khẩu</option>
+              <option>Yêu cầu quyền truy cập</option>
+              <option>Khác...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Mô tả chi tiết</label>
+            <textarea rows="6" placeholder="Vui lòng mô tả chi tiết vấn đề anh/chị đang gặp phải..."></textarea>
+          </div>
+
+          <button class="btn-submit-help"><i class="fas fa-paper-plane"></i> Gửi yêu cầu hỗ trợ</button>
+        </div>
+
+        <!-- FAQ QUICK LINKS -->
+        <div class="glass-card section-faq">
+          <div class="card-header">
+            <div class="icon-avatar faq"><i class="fa-solid fa-comment-dots"></i></div>
+            <div class="title-group">
+              <h3>Câu hỏi thường gặp</h3>
+              <p>Giải đáp nhanh các thắc mắc phổ biến</p>
+            </div>
+          </div>
+
+          <ul class="faq-list">
+            <li>
+              <div class="faq-item">
+                <span class="faq-q">Làm thế nào để cập nhật tài liệu đã đăng?</span>
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </li>
+            <li>
+              <div class="faq-item">
+                <span class="faq-q">Giới hạn dung lượng tệp tải lên là bao nhiêu?</span>
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </li>
+            <li>
+              <div class="faq-item">
+                <span class="faq-q">Quy trình phê duyệt luận văn diễn ra như thế nào?</span>
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </li>
+            <li>
+              <div class="faq-item">
+                <span class="faq-q">Làm gì khi quên mật khẩu đăng nhập?</span>
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="/shared/js/auth.js?v=1.1"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS-GiangVien/hotro.js"></script>
+    <script src="../JS-GiangVien/support.js"></script>
+  </body>
+</html>

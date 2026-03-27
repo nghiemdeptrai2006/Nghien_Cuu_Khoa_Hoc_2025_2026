@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Hỗ trợ | Hệ thống Quản trị NCKH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlytailieu.css">
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlygiaotrinh.html">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Quản lý Giáo trình</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyluanvan.html">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Quản lý Luận văn</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlyhotro.html">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Quản lý Hỗ trợ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlychat.html">
+                        <i class="fa-solid fa-message"></i>
+                        <span>Quản lý Chat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Hỗ trợ</h2>
+                <p>Nơi tiếp nhận và xử lý yêu cầu hỗ trợ từ sinh viên và giáo viên.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh..." autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notif-badge">0</span>
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard document-dashboard">
+            
+            <div class="panel" style="margin-bottom: 25px;">
+                <div class="panel-body" style="padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <div class="toolbar-left" style="display: flex; gap: 10px;">
+                        <button class="btn btn-outline active" onclick="filterByStatus('ALL')">Tất cả</button>
+                        <button class="btn btn-outline" onclick="filterByStatus('PENDING')">Đang chờ</button>
+                        <button class="btn btn-outline" onclick="filterByStatus('RESOLVED')">Đã xử lý</button>
+                    </div>
+                    <div class="toolbar-right">
+                        <select class="form-control" id="statusFilter" onchange="filterByStatus(this.value)" style="min-width: 200px;">
+                            <option value="ALL">Mọi trạng thái</option>
+                            <option value="PENDING">Chưa giải quyết</option>
+                            <option value="RESOLVED">Đã hoàn thành</option>
+                            <option value="REJECTED">Từ chối</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid" id="adminDocumentGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px;">
+                <p style="color: var(--gray-400); padding: 20px; text-align: center; width: 100%;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải yêu cầu hỗ trợ...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="viewModal" class="modal-overlay">
+      <div class="modal-content" style="max-width: 650px;">
+        <div class="modal-header">
+          <h3 id="viewModalTitle"><i class="fa-solid fa-headset"></i> Chi tiết yêu cầu hỗ trợ</h3>
+          <button class="close-btn close-modal" onclick="closeViewModal()">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 24px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+              <div class="form-group">
+                  <label>Người gửi</label>
+                  <p id="viewUserName" style="font-weight: 500; color: var(--dark);"></p>
+              </div>
+              <div class="form-group">
+                  <label>Ngày gửi</label>
+                  <p id="viewDate" style="color: var(--gray-600);"></p>
+              </div>
+              <div class="form-group" style="grid-column: span 2;">
+                  <label>Tiêu đề</label>
+                  <p id="viewSubject" style="font-weight: 600; font-size: 1.1rem; color: var(--primary);"></p>
+              </div>
+              <div class="form-group">
+                  <label>Trạng thái</label>
+                  <span id="viewStatusLabel" class="badge" style="padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; display: inline-block;"></span>
+              </div>
+          </div>
+          <hr style="border: none; border-top: 1px solid var(--gray-100); margin: 24px 0;">
+          <div class="form-group">
+              <label>Nội dung chi tiết</label>
+              <div id="viewDetails" style="background: var(--gray-50); padding: 20px; border-radius: 12px; border: 1px solid var(--gray-200); color: var(--gray-800); line-height: 1.6; min-height: 120px; white-space: pre-wrap;">
+                ...
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding: 20px 24px;">
+          <div id="adminActions" style="display: flex; gap: 12px; float: left;">
+              <button class="btn btn-primary" id="btnResolve"><i class="fas fa-check"></i> Đã giải quyết</button>
+              <button class="btn btn-outline" id="btnReject" style="color: var(--danger); border-color: var(--danger);"><i class="fas fa-ban"></i> Từ chối</button>
+          </div>
+          <button class="btn btn-outline" onclick="closeViewModal()">Đóng cửa sổ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chúng ta không cần editModal cho hỗ trợ, chỉ cần xem và đổi trạng thái -->
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlyhotro.js"></script>
+</body>
+</html>

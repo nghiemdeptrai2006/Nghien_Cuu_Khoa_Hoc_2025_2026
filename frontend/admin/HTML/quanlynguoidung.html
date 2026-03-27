@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Người dùng | Hệ thống Quản trị Học liệu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlynguoidung.css">
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap icon"></i>
+                <h2>QL-HOCLIEU</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlygiaotrinh.html">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Quản lý Giáo trình</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyluanvan.html">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Quản lý Luận văn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyhotro.html">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Quản lý Hỗ trợ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlychat.html">
+                        <i class="fa-solid fa-message"></i>
+                        <span>Quản lý Chat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Quản lý Người dùng</h2>
+                <p>Hiển thị và phân quyền danh sách Giảng viên, Sinh viên, Cán bộ.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh..." autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notif-badge">0</span>
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard user-dashboard">
+            
+            <div class="user-toolbar">
+                <div class="toolbar-left">
+                    <button class="btn btn-primary" onclick="openUserModal('add')"><i class="fa-solid fa-user-plus"></i> Thêm Người dùng mới</button>
+                    <button class="btn btn-outline"><i class="fa-solid fa-file-import"></i> Nhập từ Excel</button>
+                </div>
+                <div class="toolbar-right">
+                    <select class="form-select filter-select">
+                        <option value="all">Tất cả vai trò</option>
+                        <option value="giangvien">Giảng viên / Nghiên cứu viên</option>
+                        <option value="sinhvien">Sinh viên / Học viên</option>
+                        <option value="admin">Quản trị viên</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container panel">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Họ và Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dữ liệu thực tế sẽ được load từ Server qua quanlynguoidung.js -->
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <!-- Phân trang tự động sẽ được generate bởi JS -->
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <div id="userModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="userModalTitle">Thêm Người dùng mới</h3>
+          <button class="close-btn" onclick="closeUserModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+              <div class="form-row">
+                  <div class="form-group half">
+                    <label>Họ và Tên (*):</label>
+                    <input type="text" id="userName" class="form-control" placeholder="Nhập họ tên đầy đủ" required />
+                  </div>
+                  <div class="form-group half">
+                    <label>Mã ID (Mã SV / Mã GV) (*):</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" id="userId" class="form-control" placeholder="VD: SV001" style="flex: 1;" />
+                        <button type="button" id="check-id-btn" class="btn btn-outline" onclick="checkExistingUser()" style="padding: 0 10px; white-space: nowrap; height: 38px;">
+                            <i class="fa-solid fa-magnifying-glass"></i> Check
+                        </button>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label>Email (*):</label>
+                <input type="email" id="userEmail" class="form-control" placeholder="name@edu.vn" required />
+              </div>
+              <div class="form-row">
+                  <div class="form-group half">
+                    <label>Vai trò hệ thống:</label>
+                    <select id="userRole" class="form-control">
+                        <option value="student">Sinh viên</option>
+                        <option value="teacher">Giảng viên/Phòng ban</option>
+                        <option value="admin">Quản trị viên</option>
+                    </select>
+                  </div>
+                  <div class="form-group half">
+                    <label>Mật khẩu khởi tạo:</label>
+                    <input type="password" id="userPassword" class="form-control" placeholder="Để trống = Mặc định (123456)" />
+                  </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="saveUser()"><i class="fas fa-save"></i> Lưu dữ liệu</button>
+          <button class="btn btn-outline" onclick="closeUserModal()" style="margin-left: 10px;">Hủy</button>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- User Profile Details Modal -->
+    <div id="profileModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px; padding: 0;">
+            <div class="profile-view-header">
+                <button class="close-btn" onclick="closeProfileModal()" style="position: absolute; top: 15px; right: 15px;">&times;</button>
+                <div class="profile-large-avatar" id="p-avatar-container">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="profile-name-area">
+                    <h2 id="p-full-name">Nguyễn Văn A</h2>
+                    <p id="p-role-badge">Giảng viên / Nghiên cứu viên</p>
+                </div>
+            </div>
+            
+            <div class="modal-body" style="padding: 0;">
+                <div class="profile-stats-grid">
+                    <div class="p-stat-card">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span class="p-number" id="p-doc-count">0</span>
+                        <span class="p-label">Tài liệu</span>
+                    </div>
+                    <div class="p-stat-card">
+                        <i class="fa-solid fa-book"></i>
+                        <span class="p-number" id="p-textbook-count">0</span>
+                        <span class="p-label">Giáo trình</span>
+                    </div>
+                    <div class="p-stat-card">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span class="p-number" id="p-thesis-count">0</span>
+                        <span class="p-label">Luận văn</span>
+                    </div>
+                </div>
+ 
+                <div class="profile-info-list">
+                    <div class="p-info-item">
+                        <span class="p-info-label">Mã định danh/ID:</span>
+                        <span class="p-info-value" id="p-username">#GV001</span>
+                    </div>
+                    <div class="p-info-item">
+                        <span class="p-info-label">Email công vụ:</span>
+                        <span class="p-info-value" id="p-email">nguyenvana@edu.vn</span>
+                    </div>
+                    <div class="p-info-item">
+                        <span class="p-info-label">Trạng thái tài khoản:</span>
+                        <span class="p-info-value" id="p-status">Đang hoạt động</span>
+                    </div>
+                    <div class="p-info-item">
+                        <span class="p-info-label">Ngày tham gia:</span>
+                        <span class="p-info-value">12/01/2026</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="background: white; border-top: none; text-align: center; padding-bottom: 25px;">
+                <button class="btn btn-primary" onclick="openEditFromProfile()" style="width: 80%; border: none;">
+                    <i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa thông tin
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlynguoidung.js"></script>
+</body>
+</html>

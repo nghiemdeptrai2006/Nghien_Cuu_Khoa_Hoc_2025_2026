@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Thống kê Học liệu | Hệ thống Quản trị</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="../CSS/trangchu.css">
+    <link rel="stylesheet" href="../CSS/quanlybaocao.css">
+    <link rel="stylesheet" href="../../../shared/css/notifications.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-microscope icon"></i>
+                <h2>QL-NCKH</h2>
+            </div>
+            <button class="toggle-btn" id="toggle-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="trangchu.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Tổng quan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlynguoidung.html">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Quản lý Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlytailieu.html">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Quản lý Tài liệu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlygiaotrinh.html">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Quản lý Giáo trình</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyluanvan.html">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Quản lý Luận văn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlyhotro.html">
+                        <i class="fa-solid fa-headset"></i>
+                        <span>Quản lý Hỗ trợ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="quanlychat.html">
+                        <i class="fa-solid fa-message"></i>
+                        <span>Quản lý Chat</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="quanlybaocao.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        <span>Báo cáo Thống kê</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="caidathethong.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Cài đặt Hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="logout-link">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Đăng xuất</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+        <header class="top-nav">
+            <div class="nav-left">
+                <h2>Báo cáo Học liệu & Thống kê Truy cập</h2>
+                <p>Khung nhìn dữ liệu trực quan về Tài liệu, Giáo trình và Luận văn toàn hệ thống.</p>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nhanh..." autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                <div class="notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="badge" id="notif-badge">0</span>
+                    <div class="notif-dropdown">
+                        <div class="notif-header">
+                            <h4>Thông báo mới</h4>
+                            <a href="#" id="mark-all-read">Đánh dấu đã đọc</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                        </div>
+                        <div class="notif-footer">
+                            <a href="#">Xem tất cả thông báo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <span id="user-name-display">Quản trị viên</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="profile-dropdown">
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                            <div>
+                                <h4>Quản trị viên</h4>
+                                <p>admin@utc.edu.vn</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-id-card"></i> Hồ sơ cá nhân</a></li>
+                            <li><a href="caidathethong.html"><i class="fa-solid fa-sliders"></i> Cài đặt hệ thống</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="logout-link"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard report-dashboard">
+            
+            <div class="report-toolbar">
+                <div class="toolbar-left">
+                    <select class="form-select time-filter">
+                        <option value="2026">Năm 2026</option>
+                        <option value="2025">Năm 2025</option>
+                        <option value="2024">Năm 2024</option>
+                        <option value="all">Toàn thời gian</option>
+                    </select>
+                    <select class="form-select dept-filter">
+                        <option value="all">Tất cả Khoa / Viện</option>
+                        <option value="it">Khoa Công nghệ Thông tin</option>
+                        <option value="eco">Khoa Kinh tế - Tài chính</option>
+                        <option value="lang">Khoa Ngoại ngữ</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="generateReport()"><i class="fa-solid fa-rotate"></i> Lập Báo Cáo</button>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn btn-export" onclick="exportPDF()"><i class="fa-solid fa-file-pdf"></i> Xuất PDF</button>
+                    <button class="btn btn-export" onclick="exportExcel()"><i class="fa-solid fa-file-excel"></i> Xuất Excel</button>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card primary">
+                    <div class="stat-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="stat-info">
+                        <h3 id="totalDocs">0</h3>
+                        <p>Tổng số Tài liệu</p>
+                        <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> +12%</div>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-icon"><i class="fa-solid fa-book"></i></div>
+                    <div class="stat-info">
+                        <h3 id="totalTextbooks">0</h3>
+                        <p>Giáo trình số</p>
+                        <div class="stat-trend up"><i class="fa-solid fa-check"></i> Ổn định</div>
+                    </div>
+                </div>
+
+                <div class="stat-card success">
+                    <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="stat-info">
+                        <h3 id="totalThesis">0</h3>
+                        <p>Luận văn & Đồ án</p>
+                        <div class="stat-trend up"><i class="fa-solid fa-arrow-up"></i> +8%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-row">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Số lượng Học liệu theo Chuyên ngành</h3>
+                        <div class="chart-actions">
+                            <button class="icon-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                    </div>
+                    <div class="panel-body" style="height: 350px;">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Cơ cấu Học liệu (2026)</h3>
+                    </div>
+                    <div class="panel-body" style="height: 350px;">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+             <div class="report-list panel">
+                <h3>Lịch sử Cập nhật & Logging Hệ thống</h3>
+                <div class="log-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Sự kiện</th>
+                                <th>Người thực hiện</th>
+                                <th>IP Truy cập</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logTableBody">
+                            <!-- Logs will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+
+        </div>
+    </main>
+
+    <script src="/shared/js/auth.js"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS/trangchu.js"></script>
+    <script src="../JS/quanlybaocao.js"></script>
+</body>
+</html>

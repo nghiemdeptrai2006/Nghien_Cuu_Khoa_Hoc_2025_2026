@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Luận văn | Kho dữ liệu số</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/shared_v59.css" />
+    <link rel="stylesheet" href="../CSS-GiangVien/quanlyluanvan_v59.css" />
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <script>console.log("%c >>> AWF V5.10 THESIS REBUILT <<< ", "background: #10B981; color: white; font-weight: bold; padding: 4px;");</script>
+  </head>
+  <body>
+    <!-- VERSION BADGE FOR DEBUGGING -->
+    <div style="position: fixed; bottom: 10px; left: 10px; background: #10B981; color: white; padding: 5px 10px; border-radius: 5px; font-size: 10px; z-index: 9999; font-weight: bold; opacity: 0.7;">AWF V5.10 - THESIS REBUILT</div>
+    
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <img src="../IMG-GiangVien/logokhoa.jpg" class="logo" alt="Logo Khoa" />
+          <div class="logo-text">
+            <h1>CỔNG <span>GIẢNG VIÊN</span></h1>
+            <p>Khoa Đào tạo Quốc tế</p>
+          </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle"><i class="fas fa-bars"></i></button>
+
+        <nav class="menu" id="mainMenu">
+          <a href="trangchu.html"><i class="fas fa-home"></i> Trang chủ</a>
+          <a href="quanlytailieu.html"><i class="fas fa-book-open"></i> QL Tài liệu</a>
+          <a href="quanlygiaotrinh.html"><i class="fas fa-book"></i> QL Giáo trình</a>
+          <a href="quanlyluanvan.html" class="active"><i class="fas fa-graduation-cap"></i> QL Luận văn</a>
+          <a href="hotro.html"><i class="fas fa-life-ring"></i> Hỗ trợ</a>
+          
+          <div class="user-profile-menu">
+            <div class="notifications">
+              <i class="fa-solid fa-bell"></i>
+              <span class="badge" id="notif-badge">0</span>
+              
+              <div class="notif-dropdown">
+                  <div class="notif-header">
+                      <h4>Thông báo mới</h4>
+                      <a href="#" id="mark-all-read">Đọc tất cả</a>
+                  </div>
+                  <div class="notif-list" id="notif-list">
+                      <div class="notif-empty"><i class="fa-solid fa-bell-slash"></i> Trống</div>
+                  </div>
+                  <div class="notif-footer">
+                      <a href="#">Xem tất cả</a>
+                  </div>
+              </div>
+            </div>
+            <span>Giảng viên</span>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== PREMIUM HERO SECTION ===== -->
+    <section class="premium-hero">
+      <div class="premium-hero-content">
+        <h2>QUẢN LÝ <span>LUẬN VĂN</span></h2>
+        <p>Hệ thống lưu trữ và phê duyệt luận văn tốt nghiệp, đồ án cuối khóa.</p>
+      </div>
+    </section>
+
+    <!-- ===== ELITE TOOLBAR ===== -->
+    <div class="premium-toolbar">
+      <div class="toolbar-left">
+        <button class="btn-primary" onclick="openUploadModal()">
+          <i class="fas fa-graduation-cap"></i> Đăng tải luận văn
+        </button>
+        <button class="btn-secondary" onclick="openFolderModal()">
+          <i class="fas fa-folder-plus"></i> Tạo thư mục mới
+        </button>
+      </div>
+
+      <div class="pill-search">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Tìm kiếm luận văn, sinh viên thực hiện..." onkeyup="searchFiles()" />
+      </div>
+
+      <button class="btn-filter"><i class="fas fa-filter"></i> Lọc bộ dữ liệu</button>
+    </div>
+
+
+    <main class="container">
+      <!-- DOCUMENT LISTING GRID -->
+      <section class="document-list" id="documentList">
+          <div class="skeleton-loader">Đang tải danh mục luận văn...</div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <!-- =========================================================
+         GLOBAL FOOTER (EMERALD MASTER)
+         ========================================================= -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>KHOA ĐÀO TẠO QUỐC TẾ</h4>
+          <p><i class="fas fa-university"></i> Trường Đại học Giao thông Vận tải</p>
+          <p><i class="fas fa-map-marker-alt"></i> Số 3 phố Cầu Giấy, quận Cầu Giấy, Hà Nội</p>
+          <p><i class="fas fa-phone-alt"></i> Điện thoại: 0327833928</p>
+          <p><i class="fas fa-envelope"></i> Email: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>HỆ THỐNG KHO DỮ LIỆU SỐ</h4>
+          <p><i class="fas fa-code-branch"></i> Phiên bản: 1.0.0 (Beta)</p>
+          <p><i class="fas fa-users-cog"></i> Phát triển bởi: Nhóm nghiên cứu Khoa ĐTQT</p>
+          <p><i class="fas fa-headset"></i> Hỗ trợ kỹ thuật: nguyentrongnghiem2006@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>KẾT NỐI VỚI CHÚNG TÔI</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/nguyen.nghiem.453129" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@genmitsu_ni2904" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nguyentrongnghiem2006@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-globe"></i></a>
+          </div>
+          <p class="copyright">
+            © 2026 Đại học Giao thông Vận tải. Mọi quyền được bảo lưu.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== MODAL: VIEW DETAILS ===== -->
+    <div id="viewModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="viewModalTitle">Thông tin hồ sơ luận văn</h3>
+          <button class="close-btn" onclick="closeViewModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="preview-box" style="background: #f1f5f9; border-radius: 12px; padding: 40px; text-align: center; margin-bottom: 20px;">
+             <i class="fas fa-user-graduate fa-4x" style="color: #6366f1; margin-bottom: 15px;"></i>
+             <p style="font-weight: 600;">Hồ sơ lưu trữ điện tử</p>
+             <p id="viewModalMeta" style="font-size: 0.85rem; color: #64748b;">...</p>
+          </div>
+          <div class="info-row">
+             <p id="viewModalSubject"><strong>Chuyên ngành:</strong> <span>...</span></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-download" onclick="handleDownload()"><i class="fas fa-cloud-download-alt"></i> Tải bản lưu trữ</button>
+          <button class="btn-cancel" onclick="closeViewModal()">Đóng hồ sơ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MODAL: EDIT DOCUMENT ===== -->
+    <div id="editModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Sửa thông tin đề tài</h3>
+          <button class="close-btn" onclick="closeEditModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tiêu đề đề tài/luận văn:</label>
+            <input type="text" id="editDocName" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Sinh viên/Lớp:</label>
+            <input type="text" id="editDocSubject" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Cập nhật bản Scan mới:</label>
+            <input type="file" id="editDocFile" class="form-control" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-save" onclick="saveDocument()"><i class="fas fa-save"></i> Cập nhật ngay</button>
+          <button class="btn-cancel" onclick="closeEditModal()">Hủy bỏ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MODAL: PREMIUM UPLOAD (NEW) ===== -->
+    <div id="uploadModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-file-upload"></i> Đăng tải luận văn tốt nghiệp</h3>
+          <button class="close-btn" onclick="closeUploadModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="uploadForm" onsubmit="submitUploadForm(event)">
+            <div class="form-group mb-3">
+              <label>Tên luận văn *</label>
+              <input type="text" id="docTitle" class="form-control" placeholder="Nhập tên luận văn..." required />
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-6">
+                <label>Ngành học *</label>
+                <select id="docMajor" class="form-control" required>
+                  <option value="CNTT">CNTT</option>
+                  <option value="Kinh tế">Kinh tế</option>
+                  <option value="Kỹ thuật">Kỹ thuật</option>
+                  <option value="Môn chung">Môn chung đại cương</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label>Năm bảo vệ *</label>
+                <input type="number" id="docYear" class="form-control" value="2026" required />
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Ảnh bìa (JPG/PNG) - Không bắt buộc</label>
+              <input type="file" id="docCover" accept="image/*" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+              <label>File luận văn (PDF) *</label>
+              <input type="file" id="docFile" accept=".pdf" class="form-control" required />
+            </div>
+
+            <div class="modal-footer p-0">
+              <button type="submit" class="btn-save"><i class="fas fa-cloud-upload-alt"></i> Tải lên</button>
+              <button type="button" class="btn-cancel" onclick="closeUploadModal()">Đóng</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MODAL: CREATE FOLDER (NEW) ===== -->
+    <div id="folderModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tạo thư mục luận văn</h3>
+          <button class="close-btn" onclick="closeFolderModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tên thư mục:</label>
+            <input type="text" id="folderName" class="form-control" placeholder="Ví dụ: Luận văn 2025" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-save" onclick="createFolder()"><i class="fas fa-plus-circle"></i> Tạo ngay</button>
+          <button class="btn-cancel" onclick="closeFolderModal()">Hủy bỏ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="/shared/js/auth.js?v=1.1"></script>
+    <script src="/shared/js/notifications.js"></script>
+    <script src="../JS-GiangVien/quanlyluanvan.js"></script>
+    <script src="../JS-GiangVien/support.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="../JS-GiangVien/otp-auth.js?v=1.1"></script>
+  </body>
+</html>
+
